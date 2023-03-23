@@ -6,14 +6,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
+//import NavBarComp from "./NavBarComp"
 
 function App() {
     return (
-        
+        <>
         <Container className="d-flex align-items-center 
         justify-content-center "
         style={{minHeight: "100vh"}}
         >
+
             <div className="w-100" style = {{maxWidth: '400px'}}>
                     <Router>
                         <AuthProvider1>
@@ -30,7 +32,7 @@ function App() {
                     </Router>
             </div>
         </Container>
-       
+        </>
       )
 }
 
