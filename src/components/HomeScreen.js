@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
+import Navigation from "./Navigation";
 
-export default function HomeScreen() {
+const HomeScreen = () => {
   return (
-    <div>HomeScreen</div>
-  )
-}
+    <>
+      <div>
+        <Navigation>HomeScreen</Navigation>
+      </div>
+    </>
+  );
+};
+
+export default HomeScreen;
