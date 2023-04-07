@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Card, Button, Alert } from "react-bootstrap";
+import { Card, Button, Alert, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext1";
 import { getAuth, signOut } from "firebase/auth";
+import NavBarDash from "./NavBarDash";
 //import UpdateProfile from './UpdateProfile'
 
 export default function Dashboard() {
@@ -16,7 +17,7 @@ export default function Dashboard() {
 
     try {
       await signOut(baby);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError("Failed to logout");
@@ -25,21 +26,14 @@ export default function Dashboard() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <strong>Email:</strong> {currentUser.email}
-          <Link to="/updateProfile" className="btn btn-primary w-100 mt-3">
-            Update Profile
-          </Link>
-        </Card.Body>
-      </Card>
-      <div className=" w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
+      <div>
+        <NavBarDash />
       </div>
+      <Container>
+        <div>
+          <ul>hi</ul>
+        </div>
+      </Container>
     </>
   );
 }
