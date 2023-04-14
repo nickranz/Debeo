@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 import { Container } from "react-bootstrap";
-import Task from "./Task";
+import Task from "./TransactionTask";
 
 const HomeScreen = () => {
   return (
