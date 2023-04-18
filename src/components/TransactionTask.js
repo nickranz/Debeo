@@ -16,10 +16,10 @@ export default function Task() {
           <Col>Details</Col> */}
         </Row>
         <Row>
-          <Col style = {{fontSize : "10px"}}>{reciept.date}</Col>
+          <Col style={{ fontSize: "10px" }}>{reciept.date}</Col>
         </Row>
         <Row>
-          <Col style = {{fontSize : "10px"}}>{reciept.description}</Col>
+          <Col style={{ fontSize: "10px" }}>{reciept.description}</Col>
         </Row>
       </Container>
     </Card>
