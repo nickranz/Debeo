@@ -3,8 +3,7 @@ import { getDatabase, ref, set } from "firebase/database";
 function writeData(){
 
 	const db = getDatabase;
-	set(ref(db, 'teams/' + 'turtles'), 
-		{
+	set(ref(db, 'teams/' + 'turtles'),
 			{
 				team_id : 000
 				members : {
@@ -138,9 +137,9 @@ function writeData(){
 						}
 					}        
 				}
-			}
+			})
 		
-		}
+		
 
 
 }
