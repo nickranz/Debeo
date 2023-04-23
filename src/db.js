@@ -2,7 +2,7 @@ import { getDatabase, ref, set } from "firebase/database";
 
 function writeData(){
 
-	const db = getDatabase;
+	const db = getDatabase();
 	set(ref(db, 'teams/' + 'turtles'), 
 			{
 				"team_id" : 000,
@@ -60,3 +60,4 @@ function writeData(){
 
 	)
 }
+
