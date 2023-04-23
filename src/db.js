@@ -5,7 +5,7 @@ function writeData(){
 	const db = getDatabase();
 	set(ref(db, 'teams/' + 'turtles'), 
 			{
-				"team_id" : 000,
+				"team_id" : 0,
 				"members" : {
 					"member1": {
 						"username" : "raphael2023",
@@ -28,9 +28,9 @@ function writeData(){
 				"payment_history" : {
 					"transaction1": {
 						"name" : "Walmart Groceries",
-						"date" : 01/07/2023,
+						"date" : 0,
 						"total_cost" : 100,
-						"paid_for_by" : 004,
+						"paid_for_by" : 4,
 						"items" : {
 							"Milk" : {
 								"cost" : 25,
