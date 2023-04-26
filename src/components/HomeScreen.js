@@ -15,13 +15,7 @@ const HomeScreen = () => {
       
       
       <Container>
-      <div className="home-banner-container">
-          <div className="home-bannerImage-container">
-            <img src = {BannerBackground}
-             alt ="" />
-          </div>
-      </div>
-        {/* <Task /> */}
+        
       </Container>
 
         </div>

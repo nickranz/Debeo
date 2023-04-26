@@ -49,7 +49,7 @@ const Navigation = () => {
   ];
 
   return (
-    // <div className = "navbar-links-container">
+    // <div className = "navbar-links-container"> ignore entirely for now
     //   <a href="">Home</a>
     //   <a href="">About</a>
     //   <a href="">Testimonials</a>
@@ -60,6 +60,8 @@ const Navigation = () => {
         <img src={Logo} style={{ height: 50, width: 200 }} alt="website logo" />
       </div>
       <Container>
+        
+        <Button> Home </Button>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
