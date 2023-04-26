@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Alert, Container } from "react-bootstrap";
+import { Card, Button, Alert, Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext1";
 import { getAuth, signOut } from "firebase/auth";
@@ -30,9 +30,18 @@ export default function Dashboard() {
         <NavBarDash />
       </div>
       <Container>
-        <div>
-          <ul>hi</ul>
-        </div>
+        <Row>
+          <ul>
+            <b>
+              <Col>Groups</Col>
+            </b>
+            <Col>
+              <Button variant="primary" href="./Dashboard/CreateGroup">
+                Create Group
+              </Button>
+            </Col>
+          </ul>
+        </Row>
       </Container>
     </>
   );
