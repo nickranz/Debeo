@@ -50,7 +50,7 @@ const Navigation = () => {
   ]
 
   return (
-    // <div className = "navbar-links-container">
+    // <div className = "navbar-links-container"> ignore entirely for now
     //   <a href="">Home</a>
     //   <a href="">About</a>
     //   <a href="">Testimonials</a>
@@ -64,7 +64,7 @@ const Navigation = () => {
     </div>
       <Container>
         
-        <Button> Home</Button>
+        <Button> Home </Button>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
