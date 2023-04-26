@@ -1,5 +1,5 @@
-import "./db.js"
-import "./firebase.js"
+import { getDatabase, ref, set } from "firebase/database";
+import app, { database } from "./firebase";
 
 class Team{
     name;
@@ -28,33 +28,34 @@ class Team{
 
     }
 } 
-    class Item {
-        constructor(name, cost, quantity) {
-          this.name = name;
-          this.cost = cost;
-          this.quantity = quantity;
-        }
-        getName() {
-            return this.name;
-        }
-        getCost() {
-            return this.cost;
-        }
-        getQuantity() {
-            return this.quantity;
-        }
-        setName(newName) {
-            this.name = newName;
-            return;
-        }
-        setCost(newCost) {
-            this.cost = newCost;
-            return;
-        }
-        setQuantity(newQuantity) {
-            this.quantity = newQuantity;
-            return this.name;
-        }
-    
-      }
+
+class Item {
+    constructor(name, cost, quantity) {
+        this.name = name;
+        this.cost = cost;
+        this.quantity = quantity;
+    }
+    getName() {
+        return this.name;
+    }
+    getCost() {
+        return this.cost;
+    }
+    getQuantity() {
+        return this.quantity;
+    }
+    setName(newName) {
+        this.name = newName;
+        return;
+    }
+    setCost(newCost) {
+        this.cost = newCost;
+        return;
+    }
+    setQuantity(newQuantity) {
+        this.quantity = newQuantity;
+        return this.name;
+    }
+
+    }
     
