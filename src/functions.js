@@ -1,5 +1,4 @@
-import "./db.js"
-import "./firebase.js"
+import app, { database } from "./firebase";
 
 // class Team{
 //     name;
@@ -59,32 +58,37 @@ import "./firebase.js"
 //       }
 
 function addTeam(teamName){
-
+    database.ref('teams').push({ name: teamName });
+    // firebase.database().ref('teams').push({name : teamName});
+    return;
 }
 function addMember(teamName, memberName){
-
+    return;
 }
 function removeTeam(teamName){
-
+    return;
 }
 function removeMember(teamName, memberName){
-
+    return;
 }
 function setAdmin(teamName, memberName){
-
+    return;
 }
 function unsetAdmin(teamName, memberName){
-
+    return;
 }
 function addTransaction(teamName, memberName){
-
+    return;
 }
 function addItem(teamName, memberName){
-
+    return;
 }
 function removeTransaction(teamName, memberName){
-
+    return;
 }
 function removeItem(teamName, memberName){
-
+    return;
 }
+/* TESTING ============================================================================================= */
+addTeam("apples");
+addTeam("bananas");

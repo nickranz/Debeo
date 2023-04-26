@@ -5,7 +5,7 @@ function sampleData(){
 
 	set(ref(database, 'teams/team2'), 
 			{
-				"team_id" : 0,
+				"team_name" : "turtles",
 				"members" : {
 					"member1": {
 						"username" : "raphael2023",
@@ -61,5 +61,5 @@ function sampleData(){
 	)
 }
 
-writeData();
+// writeData();
 
