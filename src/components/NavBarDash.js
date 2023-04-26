@@ -22,7 +22,7 @@ const NavBarDash = () => {
     }
   }
 
-  return (
+  return (    
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/Dashboard">Debeo</Navbar.Brand>

@@ -10,6 +10,8 @@ import UpdateProfile from "./UpdateProfile";
 import HomeScreen from "./HomeScreen";
 
 function App() {
+
+  // return <div className = "App"> Hello </div>
   return (
     <>
       <Router>
