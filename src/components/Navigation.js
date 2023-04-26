@@ -63,6 +63,8 @@ const Navigation = () => {
        alt="website logo" />
     </div>
       <Container>
+        
+        <Button> Home</Button>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
