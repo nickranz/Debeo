@@ -1,9 +1,10 @@
 import { getDatabase, ref, set } from "firebase/database";
+import app, { database } from "./firebase";
 
 function writeData(){
 
-	const db = getDatabase();
-	set(ref(db, 'teams/' + 'turtles'), 
+	//const db = getDatabase(app);
+	set(ref(database, 'teams/team2'), 
 			{
 				"team_id" : 0,
 				"members" : {
