@@ -58,7 +58,9 @@ const Navigation = () => {
     //   <a href="">
     <Navbar bg="light" expand="lg">
     <div className="nav-logo-container">
-      <img src={Logo} alt="" />
+      <img src={Logo}
+       style = {{ height: 50, width: 200}}
+       alt="website logo" />
     </div>
       <Container>
         <Navbar.Brand href="/"></Navbar.Brand>
@@ -67,7 +69,7 @@ const Navigation = () => {
           <Drawer open={openMenu} onClose={() => setOpenMenu(false)}
           anchor="right">
             <Box
-              sx={{ width: 250}}
+              sx={{ width: 100}}
               role = "presentation"
               onClick={() => setOpenMenu(false)}
               onKeyDown={() => setOpenMenu(false)}
