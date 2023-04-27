@@ -63,12 +63,33 @@ const teamsRef = ref(database, "teams")
 
 
 function addTeam(teamName){
-    push(teamsRef, { 
+    var teamKey = push(teamsRef, { 
         name: teamName 
     
-    }).catch((err) => {
+    })
+    .then(() => {
+        console.log("Reached then clause")
+        push(teamKey,
+        {
+            "members":{
+                "member1": {
+                    "username" : "raphael2023",
+                    "id" : 1,
+                },
+                "member2": {
+                    "username" : "donnyboy2023",
+                    "id" : 2,
+                },
+            },
+            "admin":null,
+            "currentDebt":null,
+            "paymentHistory":null
+
+        }).catch((err) => {
         console.log(err);
+        });
     });
+
     // firebase.database().ref('teams').push({name : teamName});
     return;
 }
@@ -100,5 +121,5 @@ function removeItem(teamName, memberName){
     return;
 }
 /* TESTING ============================================================================================= */
-addTeam("apples");
-addTeam("bananas");
+addTeam("Even Poopier Team");
+addTeam("Poopteam2");
