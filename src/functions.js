@@ -57,6 +57,7 @@ import app, { database } from "./firebase";
     
 //       }
 
+
 function addTeam(teamName){
     database.ref('teams').push({ name: teamName });
     // firebase.database().ref('teams').push({name : teamName});
