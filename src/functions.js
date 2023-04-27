@@ -1,4 +1,8 @@
 import app, { database } from "./firebase";
+import { getDatabase, ref, set, push } from "firebase/database";
+
+const teamsRef = ref(database, "teams")
+
 
 // class Team{
 //     name;
@@ -59,7 +63,12 @@ import app, { database } from "./firebase";
 
 
 function addTeam(teamName){
-    database.ref('teams').push({ name: teamName });
+    push(teamsRef, { 
+        name: teamName 
+    
+    }).catch((err) => {
+        console.log(err);
+    });
     // firebase.database().ref('teams').push({name : teamName});
     return;
 }
