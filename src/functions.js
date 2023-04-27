@@ -1,7 +1,7 @@
 import app, { database } from "./firebase";
-import { getDatabase, ref, set, push } from "firebase/database";
+import { getDatabase, ref, set, push, remove } from "firebase/database";
 
-const teamsRef = ref(database, "teams")
+const teamsRef = ref(database, "teams");
 
 
 // class Team{
@@ -63,19 +63,32 @@ const teamsRef = ref(database, "teams")
 
 
 function addTeam(teamName){
-    push(teamsRef, { 
-        name: teamName 
+    var key = push(teamsRef, { 
+        "key" : key,
+        "team_name" : teamName,
+        "members" : null,
+        "admin" : null, 
     
     }).catch((err) => {
         console.log(err);
     });
-    // firebase.database().ref('teams').push({name : teamName});
     return;
 }
 function addMember(teamName, memberName){
+    var memberRef = ref(database, "teams/" + teamName + "/members");
+    var key = push(memberRef,{
+        "username" : memberName,
+		"id" : key,
+    }).catch((err) =>{
+        console.log("ADDMEMBER() : " + err);
+    });
     return;
 }
 function removeTeam(teamName){
+    var teamRef = ref(database, "teams/" + teamName);
+    remove(teamRef).then(() => {
+        console.log("team " + teamName + "removed");
+      });
     return;
 }
 function removeMember(teamName, memberName){
@@ -100,5 +113,6 @@ function removeItem(teamName, memberName){
     return;
 }
 /* TESTING ============================================================================================= */
-addTeam("apples");
-addTeam("bananas");
+// addTeam("apples");
+addTeam("grapefruit");
+removeTeam("team1");
