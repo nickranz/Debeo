@@ -8,6 +8,7 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "./UpdateProfile";
 import HomeScreen from "./HomeScreen";
+import CreateGroup from "./CreateGroup";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                   }
                 />
                 <Route path="/signup" element={<Signup1 />} />
+                <Route path="/dashboard/creategroup" element={<CreateGroup />}/>
                 <Route path="/login" element={<Login />} />
                 <Route
                   path="/updateProfile"
