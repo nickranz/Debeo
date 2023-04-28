@@ -9,7 +9,7 @@ import Groups from "./Groups";
 
 //import UpdateProfile from './UpdateProfile'
 
-export default function Dashboard() {
+export default function GroupDashboard() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -40,46 +40,32 @@ export default function Dashboard() {
               <Container>
                 <div class="card">
                   <div class="card-header bg-secondary">
-                    Groups
+                    Team Members
                     <Button
                       size="sm"
                       style={{ float: "right" }}
-                      href="/Dashboard/CreateGroup"
+                      href="/Dashboard/"
                     >
                       +
                     </Button>{" "}
                   </div>
-                  <div class="card-body">
-                    <Groups />
-                    <Groups />
-                  </div>
+                  <div class="card-body">Team Member Name</div>
                 </div>
               </Container>
             </div>
             <div class="row mb-4"></div>
-            <div class="row">
-              <Container>
-                <div class="card">
-                  <div class="card-header bg-secondary">
-                    Transaction History
-                  </div>
-                  <div class="card-body">
-                    Your transaction history will appear here.
-                  </div>
-                </div>
-              </Container>
-            </div>
+            <div class="row"></div>
           </div>
           <div class="col-lg-6">
             <Container>
               <div class="card w-51">
-                <div className="card-header bg-secondary">
+                <div class="card-header bg-secondary">
                   <button type="button" class="btn btn-secondary btn-sm">
-                    Recent
+                    Expense
                   </button>
-                  <button type="button" class="btn btn-secondary btn-sm">
+                  {/* <button type="button" class="btn btn-secondary btn-sm">
                     My Transactions
-                  </button>
+                  </button> */}
                 </div>
                 <div class="card-body">
                   <Task />
