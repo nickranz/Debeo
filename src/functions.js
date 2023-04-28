@@ -64,31 +64,28 @@ const teamsRef = ref(database, "teams")
 
 function addTeam(teamName){
     var teamKey = push(teamsRef, { 
-        name: teamName 
+        name: teamName,
+        members:'',
+        admin:'',
+        currentDebt:0,
+        paymentHistory:''
     
     })
-    .then(() => {
-        console.log("Reached then clause")
-        push(teamKey,
-        {
-            "members":{
-                "member1": {
-                    "username" : "raphael2023",
-                    "id" : 1,
-                },
-                "member2": {
-                    "username" : "donnyboy2023",
-                    "id" : 2,
-                },
-            },
-            "admin":null,
-            "currentDebt":null,
-            "paymentHistory":null
-
-        }).catch((err) => {
-        console.log(err);
-        });
+    .catch((err) => {
+    console.log(err);
     });
+
+
+   
+
+
+   
+
+    /*
+    .then(() => {
+        
+    });
+    */
 
     // firebase.database().ref('teams').push({name : teamName});
     return;
@@ -121,5 +118,4 @@ function removeItem(teamName, memberName){
     return;
 }
 /* TESTING ============================================================================================= */
-addTeam("Even Poopier Team");
-addTeam("Poopteam2");
+addTeam("TempTeam");
