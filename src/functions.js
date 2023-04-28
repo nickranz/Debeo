@@ -1,5 +1,5 @@
 import app, { database } from "./firebase";
-import { getDatabase, ref, set, push } from "firebase/database";
+import { getDatabase, ref, set, push, remove, child } from "firebase/database";
 
 const teamsRef = ref(database, "teams")
 
@@ -63,7 +63,9 @@ const teamsRef = ref(database, "teams")
 
 
 function addTeam(teamName){
-    var teamKey = push(teamsRef, { 
+    //addTeam with teamName as key (best solution for our time constraints)
+    //May use push() to generate unique ID as attribute
+    set(ref(database, 'teams/' + teamName), { 
         name: teamName,
         members:'',
         admin:'',
@@ -75,25 +77,22 @@ function addTeam(teamName){
     console.log(err);
     });
 
-
-   
-
-
-   
-
-    /*
-    .then(() => {
-        
-    });
-    */
-
-    // firebase.database().ref('teams').push({name : teamName});
     return;
 }
 function addMember(teamName, memberName){
+    
+
     return;
 }
 function removeTeam(teamName){
+    //Get the reference to specific teamName table via teamRef child
+    var teamRef = ref(database, "teams/" + teamName)
+    .catch((err) => {
+        console.log(err);
+    });
+
+
+    remove(teamRef);
     return;
 }
 function removeMember(teamName, memberName){
@@ -119,3 +118,5 @@ function removeItem(teamName, memberName){
 }
 /* TESTING ============================================================================================= */
 addTeam("TempTeam");
+
+removeTeam("TempTeam");
