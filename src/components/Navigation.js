@@ -6,6 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, List } from "react";
 
 import Logo from "../Assets/DEBEO.svg";
+import Placeholder from "../Assets/money.png"
+
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {
@@ -49,74 +51,95 @@ const Navigation = () => {
   ];
 
   return (
-    // <div className = "navbar-links-container"> ignore entirely for now
-    //   <a href="">Home</a>
-    //   <a href="">About</a>
-    //   <a href="">Testimonials</a>
-    //   <a href="">Contact</a>
-    //   <a href="">
-    <Navbar bg="light" expand="lg">
-      <div className="nav-logo-container">
-        <img src={Logo} style={{ height: 50, width: 200 }} alt="website logo" />
-      </div>
-      <Container>
+    <nav>
+      <Navbar bg="light" expand="lg">
+        <div className="nav-logo-container">
+          <img src={Logo} style={{ height: 50, width: 180 }} alt="website logo" />
+        </div>
+        <Container>
 
-        <Navbar.Brand href="/"></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Drawer
-            open={openMenu}
-            onClose={() => setOpenMenu(false)}
-            anchor="right"
-          >
-            <Box
-              sx={{ width: 100 }}
-              role="presentation"
-              onClick={() => setOpenMenu(false)}
-              onKeyDown={() => setOpenMenu(false)}
+          <Navbar.Brand href="/"></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Drawer
+              open={openMenu}
+              onClose={() => setOpenMenu(false)}
+              anchor="right"
             >
-              <List>
-                {menuOptions.map((item) => (
-                  <ListItem key={item.text} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText> primary={item.text}</ListItemText>
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          </Drawer>
-          <Nav className="me-auto" />
-          <div class = "row">
-          {/* <div class="col-2">
-            <button type="button" class="btn btn-danger btn-block">2 Cols</button>
-          </div> */}
-
-            <div class = "col-2">
-            <Button variant="outline-primary" href="./">
-              About
-            </Button>
-            </div>
-            <div class = "col-3">
-              <Button type = "button" 
-              class = "btn btn-danger btn-block"
-              variant="outline-warning" 
+              <Box
+                sx={{ width: 100 }}
+                role="presentation"
+                onClick={() => setOpenMenu(false)}
+                onKeyDown={() => setOpenMenu(false)}
+              >
+                <List>
+                  {menuOptions.map((item) => (
+                    <ListItem key={item.text} disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText> primary={item.text}</ListItemText>
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Drawer>
+            <Nav className="me-auto" />
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-5" role="group" aria-label="First group">
+              <Button variant="outline-primary" 
+              type= "button"
               href="./">
-              Developers
+                About
               </Button>
+              <Button type = "button" 
+                class = "btn btn-danger btn-block"
+                variant="outline-primary" 
+                href="./">
+                Developers
+                </Button>
+                <Button type = "button"
+                class = "btn btn-danger btn-block"
+                variant= "outline-primary"
+                href="./login">
+                  Login
+                </Button>
+                <Button type = "button"
+                class = "btn btn-danger btn-block"
+                variant= "outline-primary"
+                href="./signup">
+                  Signup
+                </Button>
+              </div>
             </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <section class = "hero">
+      <div class="container">
+          <div class="left-col">
+            <h1>The FUTURE of modern day expense-handling!</h1>
           </div>
-          <Nav>
-            <Nav.Link href="./login">Login</Nav.Link>{" "}
-            <Button variant="primary" href="./signup">
-              Signup
-            </Button>
-            {/* <Nav.Link href="./signup">Signup</Nav.Link> */}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+
+          {/* <img src={Logo} alt="Illustration" class="hero-img" /> */}
+        </div>
+      </section>
+
+      <section class="features-section">
+        <div class="container">
+          <ul>
+            <li>Handle your expenses!</li>
+            <li>Real time collaboration!</li>
+            <li>Add friends and family to your groups!</li>
+            <li>Other awesome features!</li>
+          </ul>
+        </div>
+        <img src={Placeholder}
+         alt="phone" />
+      </section>
+
+    </nav>
   );
 };
 
