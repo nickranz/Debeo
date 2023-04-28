@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 import { Container } from "react-bootstrap";
-import Task from "./Task";
+import Groups from "./Groups";
 
 const HomeScreen = () => {
   return (
@@ -9,9 +9,9 @@ const HomeScreen = () => {
       <div>
         <Navigation />
       </div>
-      <Container>
-        <Task />
-      </Container>
+      <div class="container-fluid">
+        hi
+      </div>
     </>
   );
 };
