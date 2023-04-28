@@ -63,8 +63,7 @@ const Navigation = () => {
        alt="website logo" />
     </div>
       <Container>
-        
-        <Button> Home </Button>
+
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -89,7 +88,25 @@ const Navigation = () => {
               </Box>
           </Drawer>
           <Nav className="me-auto" />
+          <div class = "row">
+          {/* <div class="col-2">
+            <button type="button" class="btn btn-danger btn-block">2 Cols</button>
+          </div> */}
 
+            <div class = "col-2">
+            <Button variant="outline-primary" href="./">
+              About
+            </Button>
+            </div>
+            <div class = "col-3">
+              <Button type = "button" 
+              class = "btn btn-danger btn-block"
+              variant="outline-warning" 
+              href="./">
+              Developers
+              </Button>
+            </div>
+          </div>
           <Nav>
             <Nav.Link href="./login">Login</Nav.Link>{" "}
             <Button variant="primary" href="./signup">

@@ -11,7 +11,7 @@ const HomeScreen = () => {
   return (
     <>
       <div>
-      <Navigation />
+      <Navigation></Navigation>
       
       
       <Container>
