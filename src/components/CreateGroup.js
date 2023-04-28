@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext1";
 
 export default function CreateGroup() {
   const emailRef = useRef();
 
-  const passwordRef = useRef();
-  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +56,7 @@ export default function CreateGroup() {
                 <Form.Group id="group name">
                   <Form.Label>Group Name</Form.Label>
                   <Form.Control
-                    type="email"
+                    type="text"
                     placeholder="Enter Name"
                     ref={emailRef}
                     required

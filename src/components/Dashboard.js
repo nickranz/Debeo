@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Card, Button, Alert, Container, Row, Col } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext1";
 import { getAuth, signOut } from "firebase/auth";
 import NavBarDash from "./NavBarDash";
@@ -63,7 +63,7 @@ export default function Dashboard() {
                   <div class="card-header bg-secondary">
                     Transaction History
                   </div>
-                  <div class="card-body" placeholder="">
+                  <div class="card-body">
                     Your transaction history will appear here.
                   </div>
                 </div>
