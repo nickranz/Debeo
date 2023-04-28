@@ -23,31 +23,30 @@ import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
-
 const Navigation = () => {
-  const [openMenu, setOpenMenu] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false);
   const menuOptions = [
     {
-      text:"Home",
-      icon:<HomeIcon/>
+      text: "Home",
+      icon: <HomeIcon />,
     },
     {
-      text:"About",
-      icon:<InfoIcon/>
+      text: "About",
+      icon: <InfoIcon />,
     },
     {
-      text:"Testimonials",
-      icon:<CommentRoundedIcon/>
+      text: "Testimonials",
+      icon: <CommentRoundedIcon />,
     },
     {
-      text:"Contact",
-      icon:<PhoneRoundedIcon/>
+      text: "Contact",
+      icon: <PhoneRoundedIcon />,
     },
     {
-      text:"Cart",
-      icon:<ShoppingCartRoundedIcon/>
+      text: "Cart",
+      icon: <ShoppingCartRoundedIcon />,
     },
-  ]
+  ];
 
   return (
     // <div className = "navbar-links-container"> ignore entirely for now
@@ -57,35 +56,36 @@ const Navigation = () => {
     //   <a href="">Contact</a>
     //   <a href="">
     <Navbar bg="light" expand="lg">
-    <div className="nav-logo-container">
-      <img src={Logo}
-       style = {{ height: 50, width: 200}}
-       alt="website logo" />
-    </div>
+      <div className="nav-logo-container">
+        <img src={Logo} style={{ height: 50, width: 200 }} alt="website logo" />
+      </div>
       <Container>
 
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Drawer open={openMenu} onClose={() => setOpenMenu(false)}
-          anchor="right">
+          <Drawer
+            open={openMenu}
+            onClose={() => setOpenMenu(false)}
+            anchor="right"
+          >
             <Box
-              sx={{ width: 100}}
-              role = "presentation"
+              sx={{ width: 100 }}
+              role="presentation"
               onClick={() => setOpenMenu(false)}
               onKeyDown={() => setOpenMenu(false)}
-              >
-                <List>
-                  {menuOptions.map((item) => (
-                    <ListItem key = {item.text} disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText> primary={item.text}</ListItemText>
-                      </ListItemButton>
-                      </ListItem>
-                  ))}
-                </List>
-              </Box>
+            >
+              <List>
+                {menuOptions.map((item) => (
+                  <ListItem key={item.text} disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                      <ListItemText> primary={item.text}</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
           </Drawer>
           <Nav className="me-auto" />
           <div class = "row">
