@@ -1,5 +1,5 @@
 import app, { database } from "./firebase";
-import { getDatabase, ref, set, push, remove } from "firebase/database";
+import { getDatabase, ref, set, push, remove, Child } from "firebase/database";
 
 const teamsRef = ref(database, "teams");
 
@@ -63,15 +63,48 @@ const teamsRef = ref(database, "teams");
 
 
 function addTeam(teamName){
-    var key = push(teamsRef, { 
-        "key" : key,
-        "team_name" : teamName,
-        "members" : null,
-        "admin" : null, 
+    // var key = push(teamsRef, { 
+    //     "key" : key,
+    //     "team_name" : teamName,
+    //     "members" : null,
+    //     "admin" : null, 
+    // var teamKey = push(teamsRef, { 
+    //     name: teamName 
     
-    }).catch((err) => {
-        console.log(err);
+    // })
+    // .then(() => {
+    //     console.log("Reached then clause")
+    //     push(teamKey,
+    //     {
+    //         "members":{
+    //             "member1": {
+    //                 "username" : "raphael2023",
+    //                 "id" : 1,
+    //             },
+    //             "member2": {
+    //                 "username" : "donnyboy2023",
+    //                 "id" : 2,
+    //             },
+    //         },
+    //         "admin":null,
+    //         "currentDebt":null,
+    //         "paymentHistory":null
+
+    //     }).catch((err) => {
+    //     console.log(err);
+    //     });
+    // });
+    // // firebase.database().ref('teams').push({name : teamName});
+    // });
+    // var key = push(teamsRef, {});
+    set(teamsRef +"/" + teamName, {
+        // "key" : key,
+            "team_name" : teamName,
+            "members" : null,
+            "admin" : null,
     });
+    // set((teamsRef);
+    console.log("pushed " + teamName + "to database");
     return;
 }
 function addMember(teamName, memberName){
@@ -115,4 +148,3 @@ function removeItem(teamName, memberName){
 /* TESTING ============================================================================================= */
 // addTeam("apples");
 addTeam("grapefruit");
-removeTeam("team1");
