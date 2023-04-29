@@ -35,7 +35,7 @@ export default function GroupDashboard() {
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-2"></div>
-          <div class="col-sm-2">
+          <div class="col-sm-3">
             <div class="row">
               <Container>
                 <div class="card">
@@ -44,10 +44,10 @@ export default function GroupDashboard() {
                     <Button
                       size="sm"
                       style={{ float: "right" }}
-                      href="/Dashboard/"
+                      href="/addMember"
                     >
                       +
-                    </Button>{" "}
+                    </Button>
                   </div>
                   <div class="card-body">Team Member Name</div>
                 </div>
