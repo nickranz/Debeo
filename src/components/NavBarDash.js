@@ -22,7 +22,7 @@ const NavBarDash = () => {
     }
   }
 
-  return (    
+  return (
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/Dashboard">Debeo</Navbar.Brand>
@@ -32,10 +32,8 @@ const NavBarDash = () => {
 
           <Nav>
             <NavDropdown title={currentUser.email} id="basic-nav-dropdown">
-              <NavDropdown.Item href="/updateprofile">
-                Your Account
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/finances">Finances</NavDropdown.Item>
+              <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
+              {/* <NavDropdown.Item href="/finances">Finances</NavDropdown.Item> */}
               <NavDropdown.Item href="/settings">Settings</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>

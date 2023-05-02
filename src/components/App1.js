@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
-import UpdateProfile from "./UpdateProfile";
+import UpdateProfile from "./Settings";
 import HomeScreen from "./HomeScreen";
 import CreateGroup from "./CreateGroup";
 import GroupDashboard from "./GroupDashboard";
@@ -28,11 +28,25 @@ function App() {
               }
             />
             <Route path="/signup" element={<Signup1 />} />
-            <Route path="/dashboard/creategroup" element={<CreateGroup />} />
-            <Route path="/groupdashboard" element={<GroupDashboard />} />
+            <Route
+              path="/dashboard/creategroup"
+              element={
+                <PrivateRoute>
+                  <CreateGroup />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/groupdashboard"
+              element={
+                <PrivateRoute>
+                  <GroupDashboard />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route
-              path="/updateProfile"
+              path="/Settings"
               element={
                 <PrivateRoute>
                   <UpdateProfile />
