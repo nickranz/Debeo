@@ -1,5 +1,5 @@
 import app, { database } from "./firebase";
-import { getDatabase, ref, set, push, remove, Child } from "firebase/database";
+import { getDatabase, ref, set, push, remove, child } from "firebase/database";
 
 const teamsRef = ref(database, "teams");
 
@@ -63,65 +63,36 @@ const teamsRef = ref(database, "teams");
 
 
 function addTeam(teamName){
-    // var key = push(teamsRef, { 
-    //     "key" : key,
-    //     "team_name" : teamName,
-    //     "members" : null,
-    //     "admin" : null, 
-    // var teamKey = push(teamsRef, { 
-    //     name: teamName 
+    //addTeam with teamName as key (best solution for our time constraints)
+    //May use push() to generate unique ID as attribute
+    set(ref(database, 'teams/' + teamName), { 
+        name: teamName,
+        members:'',
+        admin:'',
+        currentDebt:0,
+        paymentHistory:''
     
-    // })
-    // .then(() => {
-    //     console.log("Reached then clause")
-    //     push(teamKey,
-    //     {
-    //         "members":{
-    //             "member1": {
-    //                 "username" : "raphael2023",
-    //                 "id" : 1,
-    //             },
-    //             "member2": {
-    //                 "username" : "donnyboy2023",
-    //                 "id" : 2,
-    //             },
-    //         },
-    //         "admin":null,
-    //         "currentDebt":null,
-    //         "paymentHistory":null
-
-    //     }).catch((err) => {
-    //     console.log(err);
-    //     });
-    // });
-    // // firebase.database().ref('teams').push({name : teamName});
-    // });
-    // var key = push(teamsRef, {});
-    set(teamsRef +"/" + teamName, {
-        // "key" : key,
-            "team_name" : teamName,
-            "members" : null,
-            "admin" : null,
+    })
+    .catch((err) => {
+    console.log(err);
     });
-    // set((teamsRef);
-    console.log("pushed " + teamName + "to database");
+
     return;
 }
 function addMember(teamName, memberName){
-    var memberRef = ref(database, "teams/" + teamName + "/members");
-    var key = push(memberRef,{
-        "username" : memberName,
-		"id" : key,
-    }).catch((err) =>{
-        console.log("ADDMEMBER() : " + err);
-    });
+    
+
     return;
 }
 function removeTeam(teamName){
-    var teamRef = ref(database, "teams/" + teamName);
-    remove(teamRef).then(() => {
-        console.log("team " + teamName + "removed");
-      });
+    //Get the reference to specific teamName table via teamRef child
+    var teamRef = ref(database, "teams/" + teamName)
+    .catch((err) => {
+        console.log(err);
+    });
+
+
+    remove(teamRef);
     return;
 }
 function removeMember(teamName, memberName){
@@ -146,5 +117,6 @@ function removeItem(teamName, memberName){
     return;
 }
 /* TESTING ============================================================================================= */
-// addTeam("apples");
-addTeam("grapefruit");
+addTeam("TempTeam");
+
+removeTeam("TempTeam");
