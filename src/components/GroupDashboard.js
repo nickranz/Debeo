@@ -1,31 +1,22 @@
-import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext1";
-import { getAuth, signOut } from "firebase/auth";
+import { Button, Card, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import NavBarDash from "./NavBarDash";
 import Task from "./Task";
-import Groups from "./Groups";
+import TransactionTask from "./TransactionTask";
+//import user from "../exampleData/teamMembers.json"
+// import Groups from "./Groups";
 
 //import UpdateProfile from './UpdateProfile'
 
 export default function GroupDashboard() {
-  const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
-  const baby = getAuth();
+  const [users, setUsers] = useState([]);
 
-  async function handleLogout() {
-    setError("");
-
-    try {
-      await signOut(baby);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      setError("Failed to logout");
-    }
-  }
+  useEffect(() => {
+    fetch("../exampleData/teamMembers.json")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <>
@@ -49,7 +40,11 @@ export default function GroupDashboard() {
                       +
                     </Button>
                   </div>
-                  <div class="card-body">Team Member Name</div>
+                  <div>
+                    {users.map((user, index) => (
+                      <div key={index}>{user.user}</div>
+                    ))}
+                  </div>
                 </div>
               </Container>
             </div>
@@ -63,12 +58,18 @@ export default function GroupDashboard() {
                   <button type="button" class="btn btn-secondary btn-sm">
                     Expense
                   </button>
+                  <Button size="sm" style={{ float: "right" }}>
+                    Add Reciept
+                  </Button>
                   {/* <button type="button" class="btn btn-secondary btn-sm">
                     My Transactions
                   </button> */}
                 </div>
                 <div class="card-body">
-                  <Task />
+                  {/* <Card className="mb-3">
+                    <TransactionTask />
+                  </Card> */}
+                  <TransactionTask />
                 </div>
               </div>
             </Container>

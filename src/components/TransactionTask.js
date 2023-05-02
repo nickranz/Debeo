@@ -4,7 +4,7 @@ import reciept from "../exampleData/data2.json";
 
 export default function TransactionTask() {
   return (
-    <Card style={{ width: "29rem" }}>
+    <Card className="mx-2 my-2" /*style={{ width: "29rem" }}*/>
       {/* <Card.Header className=" text-center">I'm going to be a task</Card.Header> */}
       <Card.Header>This is user's transactions task.</Card.Header>
       <Container>

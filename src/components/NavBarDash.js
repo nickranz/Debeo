@@ -1,8 +1,8 @@
-import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import { Alert, Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext1";
 import { getAuth, signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBarDash = () => {
   const [error, setError] = useState("");
@@ -29,6 +29,7 @@ const NavBarDash = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" />
+          {error && <Alert variant="danger">{error}</Alert>}
 
           <Nav>
             <NavDropdown title={currentUser.email} id="basic-nav-dropdown">
