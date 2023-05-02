@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext1";
+// import { useAuth } from "../contexts/AuthContext1";
 
 export default function CreateGroup() {
   const emailRef = useRef();

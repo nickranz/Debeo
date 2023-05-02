@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import reciept from "../exampleData/data2.json";
 
-export default function Task() {
+export default function TransactionTask() {
   return (
     <Card style={{ width: "29rem" }}>
       {/* <Card.Header className=" text-center">I'm going to be a task</Card.Header> */}

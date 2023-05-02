@@ -1,32 +1,11 @@
-import React, { useState } from "react";
 import { Button, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext1";
-import { getAuth, signOut } from "firebase/auth";
 import NavBarDash from "./NavBarDash";
-import Task from "./Task";
+import TransactionTask from "./TransactionTask";
 import Groups from "./Groups";
 
 //import UpdateProfile from './UpdateProfile'
 
 export default function Dashboard() {
-  const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
-  const baby = getAuth();
-
-  async function handleLogout() {
-    setError("");
-
-    try {
-      await signOut(baby);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      setError("Failed to logout");
-    }
-  }
-
   return (
     <>
       <div>
@@ -82,7 +61,7 @@ export default function Dashboard() {
                   </button>
                 </div>
                 <div class="card-body">
-                  <Task />
+                  <TransactionTask />
                 </div>
               </div>
             </Container>
