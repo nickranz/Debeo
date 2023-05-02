@@ -29,8 +29,8 @@ export default function Dashboard() {
                     </Button>{" "}
                   </div>
                   <div class="card-body">
-                    <Groups />
-                    <Groups />
+                    <Groups name="Turtle" />
+                    <Groups name="Lion" />
                   </div>
                 </div>
               </Container>

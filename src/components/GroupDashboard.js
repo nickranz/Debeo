@@ -1,27 +1,18 @@
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, ListGroup } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import NavBarDash from "./NavBarDash";
 import Task from "./Task";
 import TransactionTask from "./TransactionTask";
-//import user from "../exampleData/teamMembers.json"
+import bobby from "../exampleData/teamMembers.json";
 // import Groups from "./Groups";
 
 //import UpdateProfile from './UpdateProfile'
 
 export default function GroupDashboard() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("../exampleData/teamMembers.json")
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.log(error));
-  }, []);
-
   return (
     <>
       <div>
-        <NavBarDash />
+        <NavBarDash name="Turtle" />
       </div>
       <div class="container-fluid">
         <div class="row">
@@ -40,11 +31,13 @@ export default function GroupDashboard() {
                       +
                     </Button>
                   </div>
-                  <div>
-                    {users.map((user, index) => (
-                      <div key={index}>{user.user}</div>
+                  <ListGroup className="text-center">
+                    {bobby.map((user) => (
+                      <ListGroup.Item key={user.user}>
+                        {user.user}
+                      </ListGroup.Item>
                     ))}
-                  </div>
+                  </ListGroup>
                 </div>
               </Container>
             </div>
@@ -57,6 +50,9 @@ export default function GroupDashboard() {
                 <div class="card-header bg-secondary">
                   <button type="button" class="btn btn-secondary btn-sm">
                     Expense
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm">
+                    Items
                   </button>
                   <Button size="sm" style={{ float: "right" }}>
                     Add Reciept

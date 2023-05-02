@@ -1,10 +1,18 @@
-import { Alert, Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import {
+  Alert,
+  Nav,
+  Navbar,
+  Container,
+  NavDropdown,
+  Col,
+} from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext1";
 import { getAuth, signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "../Assets/DEBEO.svg";
 
-const NavBarDash = () => {
+const NavBarDash = (props) => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -25,7 +33,18 @@ const NavBarDash = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/Dashboard">Debeo</Navbar.Brand>
+        <Navbar.Brand href="/Dashboard">
+          <img
+            src={Logo}
+            style={{ height: 50, width: 180 }}
+            alt="website logo"
+          />
+        </Navbar.Brand>
+        <Col className="text-center"></Col>
+        <Col className="text-center" style={{ fontSize: "22px" }}>
+          Team: {props.name}
+        </Col>
+        <Col className="text-center"></Col>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" />
