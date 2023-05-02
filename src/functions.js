@@ -3,73 +3,14 @@ import { getDatabase, ref, set, push, remove, child } from "firebase/database";
 
 const teamsRef = ref(database, "teams");
 
-
-// class Team{
-//     name;
-//     admin;
-    
-//     Team(name){
-//         this.name = name;
-//         this.admin = null;
-//     }
-
-//     setName(name){
-
-//     }
-//     getName(){
-//         return this.name;
-//     }
-//     setAdmin(adminUser){
-
-//     }
-//     getAdmin(){
-//         return this.admin;
-
-//     }
-
-//     addMember(user){
-
-//     }
-// } 
-//     class Item {
-//         constructor(name, cost, quantity) {
-//           this.name = name;
-//           this.cost = cost;
-//           this.quantity = quantity;
-//         }
-//         getName() {
-//             return this.name;
-//         }
-//         getCost() {
-//             return this.cost;
-//         }
-//         getQuantity() {
-//             return this.quantity;
-//         }
-//         setName(newName) {
-//             this.name = newName;
-//             return;
-//         }
-//         setCost(newCost) {
-//             this.cost = newCost;
-//             return;
-//         }
-//         setQuantity(newQuantity) {
-//             this.quantity = newQuantity;
-//             return this.name;
-//         }
-    
-//       }
-
-
-function addTeam(teamName){
+function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
     //May use push() to generate unique ID as attribute
     set(ref(database, 'teams/' + teamName), { 
         name: teamName,
         members:'',
         admin:'',
-        currentDebt:0,
+        currentDebt:'',
         paymentHistory:''
     
     })
@@ -79,31 +20,46 @@ function addTeam(teamName){
 
     return;
 }
-function addMember(teamName, memberName){
-    
+function addMember(teamName, userName){
+    set(ref(database, 'teams/' + teamName + '/members/' + userName), { 
+        username : userName,
+        email: "",
+    }).catch((err) => {
+    console.log(err);
+    });
 
     return;
 }
 function removeTeam(teamName){
     //Get the reference to specific teamName table via teamRef child
-    var teamRef = ref(database, "teams/" + teamName)
-    .catch((err) => {
+    try {
+        var teamRef = ref(database, "teams/" + teamName);
+        remove(teamRef);
+    }
+    catch(err) { 
+        console.error(err);
+    }
+    return;
+}
+function removeMember(teamName, userName){
+    try {
+        var memberRef = ref(database, "teams/" + teamName +"/members/" + userName);
+        remove(memberRef);
+    }
+    catch(err) { 
+        console.error(err);
+    }
+    return;
+}
+function setAdmin(teamName, userName){
+    set(ref(database, 'teams/' + teamName +"/admin"), {
+        admin : userName
+    }).catch((err) => {
         console.log(err);
     });
+    return;
+}
 
-
-    remove(teamRef);
-    return;
-}
-function removeMember(teamName, memberName){
-    return;
-}
-function setAdmin(teamName, memberName){
-    return;
-}
-function unsetAdmin(teamName, memberName){
-    return;
-}
 function addTransaction(teamName, memberName){
     return;
 }
@@ -116,7 +72,14 @@ function removeTransaction(teamName, memberName){
 function removeItem(teamName, memberName){
     return;
 }
-/* TESTING ============================================================================================= */
-addTeam("TempTeam");
 
-removeTeam("TempTeam");
+/* TESTING ============================================================================================= */
+removeTeam("Fruits");
+addTeam("Fruits");;
+
+addMember("Fruits", "Dragonfruit");
+addMember("Fruits", "Kiwi");
+addMember("Fruits", "Mango");
+addMember("Fruits", "Tangerine");
+
+setAdmin("Fruits", "Mango");
