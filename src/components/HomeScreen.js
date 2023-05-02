@@ -10,7 +10,7 @@ const HomeScreen = () => {
         <Navigation />
       </div>
       <Container>
-        <Task />
+        hi
       </Container>
     </>
   );
