@@ -9,9 +9,6 @@ const HomeScreen = () => {
       <div>
         <Navigation />
       </div>
-      <Container>
-        hi
-      </Container>
     </>
   );
 };

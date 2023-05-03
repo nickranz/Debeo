@@ -11,14 +11,22 @@ export default function Dashboard() {
       <div>
         <NavBarDash />
       </div>
+      <div class="row mb-5" />
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-2"></div>
+          <div class="col-sm-2" />
+          <div class="col-sm-5">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+        <div class="row mb-3" />
+        <div class="row">
+          <div class="col-sm-2" />
           <div class="col-sm-2">
             <div class="row">
               <Container>
                 <div class="card">
-                  <div class="card-header bg-secondary">
+                  <div class="card-header bg-info">
                     Groups
                     <Button
                       size="sm"
@@ -39,7 +47,7 @@ export default function Dashboard() {
             <div class="row">
               <Container>
                 <div class="card">
-                  <div class="card-header bg-secondary">
+                  <div class="card-header bg-info">
                     Transaction History
                   </div>
                   <div class="card-body">
@@ -52,11 +60,11 @@ export default function Dashboard() {
           <div class="col-lg-6">
             <Container>
               <div class="card w-51">
-                <div className="card-header bg-secondary">
-                  <button type="button" class="btn btn-secondary btn-sm">
+                <div className="card-header bg-info">
+                  <button type="button" class="btn btn-info btn-sm">
                     Recent
                   </button>
-                  <button type="button" class="btn btn-secondary btn-sm">
+                  <button type="button" class="btn btn-info btn-sm">
                     My Transactions
                   </button>
                 </div>
