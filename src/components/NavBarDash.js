@@ -42,7 +42,7 @@ const NavBarDash = (props) => {
         </Navbar.Brand>
         <Col className="text-center"></Col>
         <Col className="text-center" style={{ fontSize: "22px" }}>
-          Team: {props.name}
+          {props.name}
         </Col>
         <Col className="text-center"></Col>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

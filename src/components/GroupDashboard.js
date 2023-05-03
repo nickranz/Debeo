@@ -9,10 +9,13 @@ import bobby from "../exampleData/teamMembers.json";
 //import UpdateProfile from './UpdateProfile'
 
 export default function GroupDashboard() {
+  function handleTask(){
+    return
+  }
   return (
     <>
       <div>
-        <NavBarDash name="Turtle" />
+        <NavBarDash name="Team: Turtle" />
       </div>
       <div class="container-fluid">
         <div class="row">
