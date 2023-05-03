@@ -86,11 +86,31 @@ export default function Settings() {
                             <input type="text" class="form-control" id="inputState5" placeholder="Virginia" />
                         </Form.Group>
                         <div class="row mb-4" />
-                      <Form.Group class="col-md-2">
-                        <label for="inputZip5">Zip</label>
-                        <input type="text" class="form-control" id="inputZip5" placeholder="12345" />
-                      </Form.Group>
-                    </div>
+                        <Form.Group class="col-md-2">
+                            <label for="inputZip5">Zip</label>
+                            <input type="text" class="form-control" id="inputZip5" placeholder="12345" />
+                        </Form.Group>
+                        <div class="row mb-4" />
+                        <Form.Group class="col-md-4">
+                            <label for="inputState5">Preferred Payment Method</label>
+                            <select id="inputState5" class="form-control">
+                                <option selected="">Click to Choose...</option>
+                                <option>Paypal</option>
+                                <option>Venmo</option>
+                                <option>Card</option>
+                            </select>
+                        </Form.Group>
+                        <div class="row mb-4" />
+                        <Form.Group class="col-md-4">
+                            <label for="inputState5">Currency</label>
+                            <select id="inputState5" class="form-control">
+                                <option selected="">Click to Choose...</option>
+                                <option>$ (USD)</option>
+                                <option>€ (EUR)</option>
+                                <option>£ (GBP)</option>
+                            </select>
+                        </Form.Group>
+                        </div>
                     <hr class="my-4" />
                     <div class="row mb-4">
                       <div class="col-md-6">
