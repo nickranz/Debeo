@@ -6,6 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, List } from "react";
 
 import Logo from "../Assets/DEBEO.svg";
+import background from "../Assets/background.png"
 
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -129,7 +130,7 @@ const Navigation = () => {
         <div class="container">
           <ul>
             <li>Handle your expenses!</li>
-            <li>Real time collaboration!</li>
+            <li>Real time collabonnration!</li>
             <li>Add friends and family to your groups!</li>
             <li>Other awesome features!</li>
           </ul>
