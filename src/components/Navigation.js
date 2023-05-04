@@ -49,12 +49,19 @@ const Navigation = () => {
       icon: <ShoppingCartRoundedIcon />,
     },
   ];
-
+  const myStyle={
+    backgroundImage: `url(${background})` ,
+    height:'107.2vh',
+    marginTop:'-70px',
+    fontSize:'20px',
+    backgroundSize: 'cover',
+};
   return (
-    <nav>
+    <div style = {myStyle}>
+      <h1> geeksforgeeks </h1>
       <Navbar bg="light" expand="lg">
         <div className="nav-logo-container">
-          <img src={Logo} style={{ height: 50, width: 180 }} alt="website logo" />
+          <img src={Logo} style={{ height: 75, width: 180 }} alt="website logo" />
         </div>
         <Container>
 
@@ -116,28 +123,30 @@ const Navigation = () => {
         </Container>
       </Navbar>
 
-      <section class = "hero">
-      <div class="container">
-          <div class="left-col">
-            <h1>The FUTURE of modern day expense-handling!</h1>
+      <div style = {{backgroundColor: "purple", height: 60, width: 950 }}>
+        <section class = "hero">
+        <div class="container" >
+            <div class="left-col">
+              <h1>The FUTURE of modern day expense-handling!</h1>
+            </div>
+
+            {/* <img src={Logo} alt="Illustration" class="hero-img" /> */}
           </div>
-
-          {/* <img src={Logo} alt="Illustration" class="hero-img" /> */}
-        </div>
-      </section>
-
+        </section>
+      </div>
+      <div style = {{backgroundColor: "pink", height: 150, width: 950 }}>
       <section class="features-section">
-        <div class="container">
-          <ul>
-            <li>Handle your expenses!</li>
-            <li>Real time collabonnration!</li>
-            <li>Add friends and family to your groups!</li>
-            <li>Other awesome features!</li>
-          </ul>
+          <div class="container">
+            <ul>
+              <li>Handle your expenses!</li>
+              <li>Real time collaboration!</li>
+              <li>Add friends and family to your groups!</li>
+              <li>Other awesome features!</li>
+            </ul>
+          </div>
+        </section>
         </div>
-      </section>
-
-    </nav>
+    </div>
   );
 };
 
