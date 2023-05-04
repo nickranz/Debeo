@@ -9,7 +9,7 @@ const client_secret = 'xWN4J7BjGC8T8nGy2FF3DkOnodSvitE1I7zI6ZSMUM89Y79ZHXKzWima8
 const username = 'rhirave';
 const api_key ='44644504b962712022363599591fb03f';
 
-let my_client = new Client(client_id, client_secret, username, api_key);
+//let my_client = new Client(client_id, client_secret, username, api_key);
 
 function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
@@ -91,7 +91,7 @@ function getTeamMembers(teamName){
 }
 
 function addTransaction(teamName, memberName){
-    push(ref(database, 'teams/' + teamName + 'transactions/'), {
+    push(ref(database, 'teams/' + teamName + '/transactions/'), {
         paid_by : memberName
     }).catch((err) => {
         console.log(err);
@@ -120,3 +120,5 @@ addMember("Fruits", "Tangerine");
 setAdmin("Fruits", "Mango");
 
 getTeamMembers("Fruits");
+
+addTransaction("Fruits", "Kiwi");
