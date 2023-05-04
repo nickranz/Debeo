@@ -1,7 +1,7 @@
 import app, { database } from "./firebase";
-import { getDatabase, ref, set, push, remove, child } from "firebase/database";
+import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
+import firebase from 'firebase/compat/app'
 
-const teamsRef = ref(database, "teams");
 
 function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
@@ -60,7 +60,34 @@ function setAdmin(teamName, userName){
     return;
 }
 
+function getTeamMembers(teamName){
+    //return list of users in one team
+    const que  = query(ref(database, "teams/" + teamName + "/members/"));
+    // teamsRef.orderByChild().on(('child_added'), (snapshot) => {
+    //     console.log(snapshot.key);
+    // });
+
+    get(que)
+    .then((snapshot) =>{
+        var names = [];
+        //names list will store the team members associated with provided team name
+        snapshot.forEach(childSnapshot => {
+            names.push(childSnapshot.val());
+            console.log(childSnapshot.val())
+        });
+
+    });
+
+    //return the names list
+
+}
+
 function addTransaction(teamName, memberName){
+    push(ref(database, 'teams/' + teamName + 'transactions/'), {
+        paid_by : memberName
+    }).catch((err) => {
+        console.log(err);
+    });
     return;
 }
 function addItem(teamName, memberName){
@@ -83,3 +110,5 @@ addMember("Fruits", "Mango");
 addMember("Fruits", "Tangerine");
 
 setAdmin("Fruits", "Mango");
+
+getTeamMembers("Fruits");
