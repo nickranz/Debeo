@@ -10,6 +10,7 @@ import UpdateProfile from "./Settings";
 import HomeScreen from "./HomeScreen";
 import CreateGroup from "./CreateGroup";
 import GroupDashboard from "./GroupDashboard";
+import AddReciept from "./AddReciept";
 
 function App() {
   // return <div className = "App"> Hello </div>
@@ -50,6 +51,15 @@ function App() {
               element={
                 <PrivateRoute>
                   <UpdateProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/AddReciept"
+              element={
+                <PrivateRoute>
+                  <AddReciept />
                 </PrivateRoute>
               }
             />

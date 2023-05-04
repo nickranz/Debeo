@@ -69,7 +69,7 @@ export default function GroupDashboard() {
                   >
                     Items
                   </button>
-                  <Button size="sm" style={{ float: "right" }}>
+                  <Button size="sm" style={{ float: "right" }} href="/AddReciept">
                     Add Reciept
                   </Button>
                   {/* <button type="button" class="btn btn-secondary btn-sm">
