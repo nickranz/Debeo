@@ -60,6 +60,9 @@ function setAdmin(teamName, userName){
     return;
 }
 
+function addToList(listName, outerList){
+
+}
 function getTeamMembers(teamName){
     //return list of users in one team
     const que  = query(ref(database, "teams/" + teamName + "/members/"));
@@ -67,18 +70,31 @@ function getTeamMembers(teamName){
     //     console.log(snapshot.key);
     // });
 
-    get(que)
+    let result = get(que)
     .then((snapshot) =>{
         var names = [];
         //names list will store the team members associated with provided team name
-        snapshot.forEach(childSnapshot => {
-            names.push(childSnapshot.val());
-            console.log(childSnapshot.val())
-        });
+        snapshot.forEach((childSnapshot) => {
+            //names.push(childSnapshot.val());
+            var key = childSnapshot.key;
+            //console.log(childSnapshot.val());
+            names.push(key);
+            //console.log(names)
+            //console.log(key);
 
+        });
+        //console.log(names)
+
+        return names;
     });
+    
+    
+
+
+    //console.log(names)
 
     //return the names list
+    return result;
 
 }
 
@@ -106,4 +122,6 @@ addMember("Fruits", "Tangerine");
 
 setAdmin("Fruits", "Mango");
 
-getTeamMembers();
+var testList = getTeamMembers("Fruits");
+
+console.log(testList);
