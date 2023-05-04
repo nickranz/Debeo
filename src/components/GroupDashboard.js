@@ -9,9 +9,12 @@ import bobby from "../exampleData/teamMembers.json";
 //import UpdateProfile from './UpdateProfile'
 
 export default function GroupDashboard() {
-  function handleTask(){
-    return
-  }
+  const [activeButton, setActiveButton] = useState("expense");
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
   return (
     <>
       <div>
@@ -51,10 +54,19 @@ export default function GroupDashboard() {
             <Container>
               <div class="card w-51">
                 <div class="card-header bg-secondary">
-                  <button type="button" class="btn btn-secondary btn-sm">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    onClick={() => handleButtonClick("expense")}
+                  >
                     Expense
                   </button>
-                  <button type="button" class="btn btn-secondary btn-sm">
+
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    onClick={() => handleButtonClick("task")}
+                  >
                     Items
                   </button>
                   <Button size="sm" style={{ float: "right" }}>
@@ -65,10 +77,13 @@ export default function GroupDashboard() {
                   </button> */}
                 </div>
                 <div class="card-body">
+                  {activeButton === "task" && <TransactionTask />}
+                  {activeButton === "expense" && (
+                    <div>Expense Info...(still a work in progress)</div>
+                  )}
                   {/* <Card className="mb-3">
                     <TransactionTask />
                   </Card> */}
-                  <TransactionTask />
                 </div>
               </div>
             </Container>
