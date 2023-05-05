@@ -15,9 +15,7 @@ export default function Dashboard() {
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-2" />
-          <div class="col-sm-5">
-            <h1>Dashboard</h1>
-          </div>
+          <div class="col-sm-5">{/* <h1>Dashboard</h1> */}</div>
         </div>
         <div class="row mb-3" />
         <div class="row">
@@ -47,9 +45,7 @@ export default function Dashboard() {
             <div class="row">
               <Container>
                 <div class="card">
-                  <div class="card-header bg-info">
-                    Transaction History
-                  </div>
+                  <div class="card-header bg-info">Transaction History</div>
                   <div class="card-body">
                     Your transaction history will appear here.
                   </div>
