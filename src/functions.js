@@ -19,7 +19,7 @@ function addTeam(teamName){ //do we need to explicitly not allow duplicates or d
         members:'',
         admin:'',
         currentDebt:'',
-        paymentHistory:''
+        // paymentHistory:''
     
     })
     .catch((err) => {
@@ -71,34 +71,36 @@ function setAdmin(teamName, userName){
 function getTeamMembers(teamName){
     //return list of users in one team
     const que  = query(ref(database, "teams/" + teamName + "/members/"));
+    const names = [];
     // teamsRef.orderByChild().on(('child_added'), (snapshot) => {
     //     console.log(snapshot.key);
     // });
 
     get(que)
     .then((snapshot) =>{
-        var names = [];
         //names list will store the team members associated with provided team name
         snapshot.forEach(childSnapshot => {
-            names.push(childSnapshot.val());
-            console.log(childSnapshot.val())
+            names.push("" + childSnapshot.child("username").val().toString());
+            console.log(childSnapshot.child("username").val().toString());
         });
 
     });
 
     //return the names list
-
+    return names;
 }
 
-function addTransaction(teamName, memberName){
+function addTransaction(teamName, paid_by_member, transaction_date){
     push(ref(database, 'teams/' + teamName + '/transactions/'), {
-        paid_by : memberName
+        paid_by : paid_by_member,
+        transaction_date : transaction_date,
+        transaction_debt : ""
     }).catch((err) => {
         console.log(err);
     });
     return;
 }
-function addItem(teamName, memberName){
+function addItem(teamName, transactionID){
     return;
 }
 function removeTransaction(teamName, memberName){
@@ -119,6 +121,10 @@ addMember("Fruits", "Tangerine");
 
 setAdmin("Fruits", "Mango");
 
-getTeamMembers("Fruits");
+var fruit_members = getTeamMembers("Fruits");
+console.log("fruit_members.length = " + fruit_members.length);
+for (let i = 0; i < fruit_members.length; i++) {
+    console.log(fruit_members[i]);
+}
 
-addTransaction("Fruits", "Kiwi");
+addTransaction("Fruits", "Kiwi", "01-02-2023");
