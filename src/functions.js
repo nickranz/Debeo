@@ -6,30 +6,36 @@ import firebase from 'firebase/compat/app'
 function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
     //May use push() to generate unique ID as attribute
-    set(ref(database, 'teams/' + teamName), { 
-        name: teamName,
-        members:'',
-        admin:'',
-        currentDebt:'',
-        // paymentHistory:''
-    
-    })
-    .catch((err) => {
-    console.log(err);
-    });
+    try{
+        set(ref(database, 'teams/' + teamName), { 
+            name: teamName,
+            members:'',
+            admin:'',
+            currentDebt:'',
+            // paymentHistory:''
+        })
+    }
+    catch(err){
+        console.log(err);
+    };
 
     return;
 }
-function addMember(teamName, userName){
-    set(ref(database, 'teams/' + teamName + '/members/' + userName), { 
-        username : userName,
-        email: "",
-    }).catch((err) => {
-    console.log(err);
-    });
+/**Adds member w/ key username at path teams/teamName/members/userName */
+function addMember(teamName, userName, userEmail){
+    try{
+        set(ref(database, 'teams/' + teamName + '/members/' + userName), { 
+            username : userName,
+            email: userEmail
+        });
+    }
+    catch(err){
+        console.log(err);
+    }
 
     return;
 }
+/**Removes Team w/ key teamName from path teams/teamName */
 function removeTeam(teamName){
     //Get the reference to specific teamName table via teamRef child
     try {
@@ -41,6 +47,7 @@ function removeTeam(teamName){
     }
     return;
 }
+/**Removes member w/ key username from path teams/teamName/members/userName */
 function removeMember(teamName, userName){
     try {
         var memberRef = ref(database, "teams/" + teamName +"/members/" + userName);
@@ -51,53 +58,83 @@ function removeMember(teamName, userName){
     }
     return;
 }
+/**Sets admin of a team at path teams/teamName */
 function setAdmin(teamName, userName){
-    set(ref(database, 'teams/' + teamName +"/admin"), {
+    try{
+        set(ref(database, 'teams/' + teamName +"/admin"), {
         admin : userName
-    }).catch((err) => {
+        })
+    }
+    catch(err){
         console.log(err);
-    });
+    };
     return;
 }
-
+/**Returns list of member usernames from path teams/teamName/members */
 function getTeamMembers(teamName){
     //return list of users in one team
-    const que  = query(ref(database, "teams/" + teamName + "/members/"));
+    const que  = query(ref(database, "teams/" + teamName + "/members"));
     const names = [];
-    // teamsRef.orderByChild().on(('child_added'), (snapshot) => {
-    //     console.log(snapshot.key);
-    // });
-
     let result = get(que)
     .then((snapshot) =>{
         //names list will store the team members associated with provided team name
         snapshot.forEach((childSnapshot) => {
-            //names.push(childSnapshot.val());
             var key = childSnapshot.key;
-            //console.log(childSnapshot.val());
-            // names.push(key);
+            names.push(key);
             console.log(childSnapshot.child("username").val());
             names.push(childSnapshot.child("username").val())
         });
-        //console.log(names)
-        // return names;
+        
     });
-    //console.log(names)
     //return the names list
     return names;
 
 }
-function getTransaction(teamName,)
-function addTransaction(teamName, memberName){
+
+/**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
+function addTransaction(teamName, transactionName, paid_by, date){
+    try{ 
+         set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName), {
+             transactionName : transactionName,
+             paid_by : paid_by,
+             date : date,
+             items : ""
+         })
+     }
+     catch(err){
+         console.error(err);
+     }
+     return;
+ }
+
+/**Adds item w/ key itemName at path teams/teamName/transactions/itemName. Initializes itemPrice and itemQuantity fields. */
+function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity){
+     set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName + "/" + itemName), {
+         itemName : itemName,
+         itemPrice : itemPrice,
+         itemQuantity : itemQuantity
+     })
+ }
+/**Removes transaction w/ key transactionName from path teams/teamName/transactions */
+function removeTransaction(teamName, transactionName){
+    try {
+        var transactionRef = ref(database, "teams/" + teamName + "/transactions/" + transactionName);
+        remove(transactionRef);
+    }
+    catch(err) { 
+        console.error(err);
+    }
     return;
 }
-function addItem(teamName, transactionID){
-    return;
-}
-function removeTransaction(teamName, memberName){
-    return;
-}
-function removeItem(teamName, memberName){
+/**Removes item w/ key itemName from path teams/teamName/transactions/transactionName */
+function removeItem(teamName, transactionName, itemName){
+    try {
+        var itemRef = ref(database, "teams/" + teamName + "/transactions/" + transactionName + "/" + itemName);
+        remove(itemRef);
+    }
+    catch(err) { 
+        console.error(err);
+    }
     return;
 }
 
@@ -105,13 +142,16 @@ function removeItem(teamName, memberName){
 removeTeam("Fruits");
 addTeam("Fruits");;
 
-addMember("Fruits", "Dragonfruit");
-addMember("Fruits", "Kiwi");
-addMember("Fruits", "Mango");
-addMember("Fruits", "Tangerine");
+addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
+addMember("Fruits", "Kiwi", "dragonfruit@fruit.com");
+addMember("Fruits", "Mango", "dragonfruit@fruit.com");
+addMember("Fruits", "Tangerine", "dragonfruit@fruit.com");
 
 setAdmin("Fruits", "Mango");
 
 var testList = getTeamMembers("Fruits");
-
 console.log(testList);
+
+addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
+addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
+removeTransaction("Fruits", "Target");
