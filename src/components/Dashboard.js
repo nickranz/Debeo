@@ -9,11 +9,10 @@ export default function Dashboard() {
   return (
     <>
       <div>
-        <NavBarDash name="Dashboard" />
+        <NavBarDash />
       </div>
       <div class="row mb-5" />
       <div class="container-fluid">
-        <div class="row mb-3" />
         <div class="row">
           <div class="col-sm-2" />
           <div class="col-sm-2">
