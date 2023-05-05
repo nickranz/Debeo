@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { addMember, addTeam } from "../functions";
 // import { useAuth } from "../contexts/AuthContext1";
 
 export default function CreateGroup() {
-  const emailRef = useRef();
+  const groupNameRef = useRef();
+  const memberEmailRef = useRef();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,9 +15,16 @@ export default function CreateGroup() {
   const [memberList, setMemberList] = useState([]);
   const AddMember = () => {
     return (
-      <Form.Control type="member" className="mb-1" placeholder="Enter Email" />
+      <Form.Control
+        type="member"
+        className="mb-1"
+        placeholder="Enter Email"
+        ref={memberEmailRef}
+      />
     );
   };
+
+
 
   const addBtnClick = () => {
     if (memberList.length < 6) {
@@ -24,18 +33,26 @@ export default function CreateGroup() {
   };
 
   async function handleSubmit(e) {
+    console.log(groupNameRef.current.value);
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
+      addTeam(groupNameRef.current.value);
+      for (const member of memberList) {
+        console.log("member: ", member.memberEmailRef.current.value);
+        addMember(groupNameRef.current.value, member);
+      }
+
       // await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/Dashboard");
+      // navigate("/Dashboard");
     } catch (error) {
       setError("Failed to create group");
     }
     setLoading(false);
   }
+
   return (
     <>
       <Container
@@ -58,7 +75,7 @@ export default function CreateGroup() {
                   <Form.Control
                     type="text"
                     placeholder="Enter Name"
-                    ref={emailRef}
+                    ref={groupNameRef}
                     required
                   />
                 </Form.Group>
