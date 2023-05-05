@@ -143,9 +143,9 @@ removeTeam("Fruits");
 addTeam("Fruits");;
 
 addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
-addMember("Fruits", "Kiwi", "dragonfruit@fruit.com");
-addMember("Fruits", "Mango", "dragonfruit@fruit.com");
-addMember("Fruits", "Tangerine", "dragonfruit@fruit.com");
+addMember("Fruits", "Kiwi", "kiwi@fruit.com");
+addMember("Fruits", "Mango", "mango@fruit.com");
+addMember("Fruits", "Tangerine", "tangerine@fruit.com");
 
 setAdmin("Fruits", "Mango");
 
