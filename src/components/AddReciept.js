@@ -22,7 +22,7 @@ export default function AddReciept() {
               <div class="my-4">
                 <Form>
                   <div class="row mt-1 align-items-center">
-                      <h4 class="mb-1">Add Reciept</h4>
+                      <h4 class="mb-1">Add Receipt</h4>
                     </div>
                     <hr class="my-4" />
                     <div class="form-row">
