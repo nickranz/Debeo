@@ -2,14 +2,6 @@ import app, { database } from "./firebase";
 import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
 import firebase from 'firebase/compat/app'
 
-// const Client = require('@veryfi/veryfi-sdk');
-//Veryfi Client Info
-const client_id = 'vrf3xG8VBKx1DTvReVbViJmmXHTa9lrO6bK2Z0m';
-const client_secret = 'xWN4J7BjGC8T8nGy2FF3DkOnodSvitE1I7zI6ZSMUM89Y79ZHXKzWima8wHNniT0HTmkSHbN4OsteS52BE99w2pkPUPwY3Fl56moDS3xSy9k8yw4uD7cdkYeLOTC8MKb';
-const username = 'rhirave';
-const api_key ='44644504b962712022363599591fb03f';
-
-//let my_client = new Client(client_id, client_secret, username, api_key);
 
 function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
@@ -68,6 +60,9 @@ function setAdmin(teamName, userName){
     return;
 }
 
+function addToList(listName, outerList){
+
+}
 function getTeamMembers(teamName){
     //return list of users in one team
     const que  = query(ref(database, "teams/" + teamName + "/members/"));
@@ -76,28 +71,34 @@ function getTeamMembers(teamName){
     //     console.log(snapshot.key);
     // });
 
-    get(que)
+    let result = get(que)
     .then((snapshot) =>{
         //names list will store the team members associated with provided team name
-        snapshot.forEach(childSnapshot => {
-            names.push("" + childSnapshot.child("username").val().toString());
-            console.log(childSnapshot.child("username").val().toString());
-        });
+        snapshot.forEach((childSnapshot) => {
+            //names.push(childSnapshot.val());
+            var key = childSnapshot.key;
+            //console.log(childSnapshot.val());
+            // names.push(key);
 
+            console.log(childSnapshot.child("username").val());
+            names.push(childSnapshot.child("username").val())
+        });
+        //console.log(names)
+
+        // return names;
     });
+    
+    
+
+
+    //console.log(names)
 
     //return the names list
     return names;
+
 }
 
-function addTransaction(teamName, paid_by_member, transaction_date){
-    push(ref(database, 'teams/' + teamName + '/transactions/'), {
-        paid_by : paid_by_member,
-        transaction_date : transaction_date,
-        transaction_debt : ""
-    }).catch((err) => {
-        console.log(err);
-    });
+function addTransaction(teamName, memberName){
     return;
 }
 function addItem(teamName, transactionID){
@@ -112,7 +113,7 @@ function removeItem(teamName, memberName){
 
 /* TESTING ============================================================================================= */
 removeTeam("Fruits");
-addTeam("Fruits");
+addTeam("Fruits");;
 
 addMember("Fruits", "Dragonfruit");
 addMember("Fruits", "Kiwi");
@@ -121,10 +122,6 @@ addMember("Fruits", "Tangerine");
 
 setAdmin("Fruits", "Mango");
 
-var fruit_members = getTeamMembers("Fruits");
-console.log("fruit_members.length = " + fruit_members.length);
-for (let i = 0; i < fruit_members.length; i++) {
-    console.log(fruit_members[i]);
-}
+var testList = getTeamMembers("Fruits");
 
-addTransaction("Fruits", "Kiwi", "01-02-2023");
+console.log(testList);
