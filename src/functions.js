@@ -60,9 +60,6 @@ function setAdmin(teamName, userName){
     return;
 }
 
-function addToList(listName, outerList){
-
-}
 function getTeamMembers(teamName){
     //return list of users in one team
     const que  = query(ref(database, "teams/" + teamName + "/members/"));
@@ -79,25 +76,18 @@ function getTeamMembers(teamName){
             var key = childSnapshot.key;
             //console.log(childSnapshot.val());
             // names.push(key);
-
             console.log(childSnapshot.child("username").val());
             names.push(childSnapshot.child("username").val())
         });
         //console.log(names)
-
         // return names;
     });
-    
-    
-
-
     //console.log(names)
-
     //return the names list
     return names;
 
 }
-
+function getTransaction(teamName,)
 function addTransaction(teamName, memberName){
     return;
 }
