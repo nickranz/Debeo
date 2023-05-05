@@ -20,6 +20,7 @@ export default function GroupDashboard() {
       <div>
         <NavBarDash name="Team: Turtle" />
       </div>
+      <div class="row mb-5" />
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-2"></div>
@@ -27,7 +28,7 @@ export default function GroupDashboard() {
             <div class="row">
               <Container>
                 <div class="card">
-                  <div class="card-header bg-secondary">
+                  <div class="card-header bg-info">
                     Team Members
                     <Button
                       size="sm"
@@ -53,10 +54,10 @@ export default function GroupDashboard() {
           <div class="col-lg-6">
             <Container>
               <div class="card w-51">
-                <div class="card-header bg-secondary">
+                <div class="card-header bg-info">
                   <button
                     type="button"
-                    class="btn btn-secondary btn-sm"
+                    class="btn btn-info btn-sm"
                     onClick={() => handleButtonClick("expense")}
                   >
                     Expense
@@ -64,7 +65,7 @@ export default function GroupDashboard() {
 
                   <button
                     type="button"
-                    class="btn btn-secondary btn-sm"
+                    class="btn btn-info btn-sm"
                     onClick={() => handleButtonClick("task")}
                   >
                     Items

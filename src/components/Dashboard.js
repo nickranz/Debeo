@@ -9,16 +9,10 @@ export default function Dashboard() {
   return (
     <>
       <div>
-        <NavBarDash />
+        <NavBarDash name="Dashboard" />
       </div>
       <div class="row mb-5" />
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-2" />
-          <div class="col-sm-5">
-            <h1>Dashboard</h1>
-          </div>
-        </div>
         <div class="row mb-3" />
         <div class="row">
           <div class="col-sm-2" />
