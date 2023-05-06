@@ -70,33 +70,25 @@ function setAdmin(teamName, userName){
     };
     return;
 }
-/**Gets admin of a team */
-function getAdmin(teamName){
-
-}
 /**Returns list of member usernames from path teams/teamName/members */
 function getTeamMembers(teamName){
-    try{
-        //return list of users in one team
-        const que  = query(ref(database, "teams/" + teamName + "/members"));
-        const names = [];
-        let result = get(que)
-        .then((snapshot) =>{
-            //names list will store the team members associated with provided team name
-            snapshot.forEach((childSnapshot) => {
-                var key = childSnapshot.key;
-                names.push(key);
-                console.log(childSnapshot.child("username").val());
-                names.push(childSnapshot.child("username").val())
-            });
-            
+    //return list of users in one team
+    const que  = query(ref(database, "teams/" + teamName + "/members"));
+    const names = [];
+    let result = get(que)
+    .then((snapshot) =>{
+        //names list will store the team members associated with provided team name
+        snapshot.forEach((childSnapshot) => {
+            var key = childSnapshot.key;
+            names.push(key);
+            console.log(childSnapshot.child("username").val());
+            names.push(childSnapshot.child("username").val())
         });
-        //return the names list
-        return names;
-    }
-    catch(err){
-        console.log(err);
-    }
+        
+    });
+    //return the names list
+    return names;
+
 }
 
 /**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
