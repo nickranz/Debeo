@@ -106,7 +106,7 @@ function addTransaction(teamName, transactionName, paid_by, date){
     }
     return;
  }
-
+/** Get list of transaction keys from teamName */
  function getTransactions(teamName){
     try{
 
@@ -130,7 +130,7 @@ function addTransaction(teamName, transactionName, paid_by, date){
         console.error(err);
     }
  }
-/**Get list of item keys from transaction name */
+/**Get list of item objects from transaction name */
 function getItems(teamName, transactionName){
     try{
 
