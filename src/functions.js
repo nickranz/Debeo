@@ -130,25 +130,26 @@ function addTransaction(teamName, transactionName, paid_by, date){
         console.error(err);
     }
  }
-
+/**Get list of item keys from transaction name */
 function getItems(teamName, transactionName){
     try{
 
         //return list of users in one team
         const que  = query(ref(database, "teams/" + teamName + "/transactions/" + transactionName));
-        const transactions = [];
+        const items = [];
         let result = get(que)
         .then((snapshot) =>{
             //names list will store the team members associated with provided team name
             snapshot.forEach((childSnapshot) => {
-                var key = childSnapshot.key;
-                transactions.push(key);
+                //var key = childSnapshot.key;
+                //items.push(key);
+                items.push(childSnapshot.val())
                 //console.log(childSnapshot.child("transactionName").val());
                 //transactions.push(childSnapshot.child("transactionName").val())
             });
         });
 
-        return transactions;
+        return items;
     }
     catch(err){
         console.error(err);
@@ -209,3 +210,6 @@ removeTransaction("Fruits", "Target");
 console.log("Transactions");
 var testTransactions = getTransactions("Fruits");
 console.log(testTransactions);
+addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
+console.log("Items:")
+console.log(getItems("Fruits", testTransactions[0]))
