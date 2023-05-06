@@ -61,34 +61,51 @@ function removeMember(teamName, userName){
 /**Sets admin of a team at path teams/teamName */
 function setAdmin(teamName, userName){
     try{
-        set(ref(database, 'teams/' + teamName +"/admin"), {
-        admin : userName
-        })
+        set(ref(database, 'teams/' + teamName +"/admin"), userName);
     }
     catch(err){
         console.log(err);
     };
     return;
 }
+/**Gets admin of a team */
+function getAdmin(teamName){
+//return list of users in one team
+try {
+    const que  = query(ref(database, "teams/" + teamName));
+    let result = get(que)
+    .then((snapshot) =>{
+        //return snapshot.getValue("admin");
+        return snapshot("admin").val();
+    });
+}
+catch(err){
+    console.log(err);
+}
+}
 /**Returns list of member usernames from path teams/teamName/members */
 function getTeamMembers(teamName){
     //return list of users in one team
-    const que  = query(ref(database, "teams/" + teamName + "/members"));
-    const names = [];
-    let result = get(que)
-    .then((snapshot) =>{
-        //names list will store the team members associated with provided team name
-        snapshot.forEach((childSnapshot) => {
-            var key = childSnapshot.key;
-            names.push(key);
-            console.log(childSnapshot.child("username").val());
-            names.push(childSnapshot.child("username").val())
+    try {
+        const que  = query(ref(database, "teams/" + teamName + "/members"));
+        const names = [];
+        let result = get(que)
+        .then((snapshot) =>{
+            //names list will store the team members associated with provided team name
+            snapshot.forEach((childSnapshot) => {
+                var key = childSnapshot.key;
+                names.push(key);
+                // console.log(childSnapshot.child("username").val());
+                names.push(childSnapshot.child("username").val());
+            });
+            
         });
-        
-    });
-    //return the names list
-    return names;
-
+        //return the names list
+        return names;
+    }
+    catch(err){
+        console.log(err);
+    }
 }
 
 /**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
@@ -155,3 +172,5 @@ console.log(testList);
 addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
 addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
 removeTransaction("Fruits", "Target");
+
+console.log(getAdmin("Fruits"));
