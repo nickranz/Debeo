@@ -86,43 +86,90 @@ catch(err){
 /**Returns list of member usernames from path teams/teamName/members */
 function getTeamMembers(teamName){
     //return list of users in one team
-    try {
-        const que  = query(ref(database, "teams/" + teamName + "/members"));
-        const names = [];
-        let result = get(que)
-        .then((snapshot) =>{
-            //names list will store the team members associated with provided team name
-            snapshot.forEach((childSnapshot) => {
-                var key = childSnapshot.key;
-                names.push(key);
-                // console.log(childSnapshot.child("username").val());
-                names.push(childSnapshot.child("username").val());
-            });
-            
+    const que  = query(ref(database, "teams/" + teamName + "/members"));
+    const names = [];
+    let result = get(que)
+    .then((snapshot) =>{
+        //names list will store the team members associated with provided team name
+        snapshot.forEach((childSnapshot) => {
+            var key = childSnapshot.key;
+            names.push(key);
+            //console.log(childSnapshot.child("username").val());
+            //names.push(childSnapshot.child("username").val())
         });
-        //return the names list
-        return names;
-    }
-    catch(err){
-        console.log(err);
-    }
+        
+    });
+    //return the names list
+    return names;
+
 }
 
 /**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
 function addTransaction(teamName, transactionName, paid_by, date){
     try{ 
-         set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName), {
+        set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName), {
              transactionName : transactionName,
              paid_by : paid_by,
              date : date,
              items : ""
-         })
-     }
+        })
+    }
      catch(err){
-         console.error(err);
-     }
-     return;
+        console.error(err);
+    }
+    return;
  }
+/** Get list of transaction keys from teamName */
+ function getTransactions(teamName){
+    try{
+
+        //return list of users in one team
+        const que  = query(ref(database, "teams/" + teamName + "/transactions"));
+        const transactions = [];
+        let result = get(que)
+        .then((snapshot) =>{
+            //names list will store the team members associated with provided team name
+            snapshot.forEach((childSnapshot) => {
+                var key = childSnapshot.key;
+                transactions.push(key);
+                //console.log(childSnapshot.child("transactionName").val());
+                //transactions.push(childSnapshot.child("transactionName").val())
+            });
+        });
+
+        return transactions;
+    }
+    catch(err){
+        console.error(err);
+    }
+ }
+/**Get list of item objects from transaction name */
+function getItems(teamName, transactionName){
+    try{
+
+        //return list of users in one team
+        const que  = query(ref(database, "teams/" + teamName + "/transactions/" + transactionName));
+        const items = [];
+        let result = get(que)
+        .then((snapshot) =>{
+            //names list will store the team members associated with provided team name
+            snapshot.forEach((childSnapshot) => {
+                //var key = childSnapshot.key;
+                //items.push(key);
+                items.push(childSnapshot.val())
+                //console.log(childSnapshot.child("transactionName").val());
+                //transactions.push(childSnapshot.child("transactionName").val())
+            });
+        });
+
+        return items;
+    }
+    catch(err){
+        console.error(err);
+    }
+
+}
+
 
 /**Adds item w/ key itemName at path teams/teamName/transactions/itemName. Initializes itemPrice and itemQuantity fields. */
 function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity){
@@ -173,4 +220,9 @@ addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
 addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
 removeTransaction("Fruits", "Target");
 
-console.log(getAdmin("Fruits"));
+console.log("Transactions");
+var testTransactions = getTransactions("Fruits");
+console.log(testTransactions);
+addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
+console.log("Items:")
+console.log(getItems("Fruits", testTransactions[0]))
