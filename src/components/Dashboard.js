@@ -8,7 +8,7 @@ import Groups from "./Groups";
 export default function Dashboard() {
   return (
     <>
-      <div>
+      <div className="">
         <NavBarDash />
       </div>
       <div class="row mb-5" />

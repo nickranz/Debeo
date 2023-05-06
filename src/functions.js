@@ -33,6 +33,7 @@ export function addTeam(teamName) {
 }
 /**Adds member w/ key username at path teams/teamName/members/userName */
 export function addMember(teamName, userName, userEmail) {
+  // console.log("hi");
   try {
     set(ref(database, "teams/" + teamName + "/members/" + userName), {
       username: userName,
@@ -65,8 +66,10 @@ function removeMember(teamName, userName) {
   }
   return;
 }
+
 /**Sets admin of a team at path teams/teamName */
-function setAdmin(teamName, userName) {
+export function setAdmin(teamName, userName) {
+  console.log("admin: ", userName);
   try {
     set(ref(database, "teams/" + teamName + "/admin"), {
       admin: userName,

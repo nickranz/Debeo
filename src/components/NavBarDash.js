@@ -18,6 +18,8 @@ const NavBarDash = (props) => {
   const navigate = useNavigate();
   const baby = getAuth();
 
+  // console.log("user: ", currentUser.email);
+
   async function handleLogout() {
     setError("");
 

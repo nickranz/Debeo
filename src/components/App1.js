@@ -11,6 +11,7 @@ import HomeScreen from "./HomeScreen";
 import CreateGroup from "./CreateGroup";
 import GroupDashboard from "./GroupDashboard";
 import AddReciept from "./AddReciept";
+import Test from "./Test";
 
 function App() {
   // return <div className = "App"> Hello </div>
@@ -46,6 +47,8 @@ function App() {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/Test" element={<Test />} />
+
             <Route
               path="/Settings"
               element={

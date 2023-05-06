@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext1";
 
 export default function Signup1() {
+  // const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup, login } = useAuth();
+  const { signup, login, setName } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +25,9 @@ export default function Signup1() {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/dashboard");
+      // setName(nameRef.current.value);
+
+      // navigate("/dashboard");
     } catch (error) {
       setError("Failed to create an account");
     }
@@ -43,6 +46,10 @@ export default function Signup1() {
               <h2 className="text-center mb-4">Sign Up</h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
+                {/* <Form.Group id="name">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control type="name" ref={nameRef} required />
+                </Form.Group> */}
                 <Form.Group id="email">
                   <Form.Label>Email</Form.Label>
                   <Form.Control type="email" ref={emailRef} required />
