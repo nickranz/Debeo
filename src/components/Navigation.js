@@ -6,12 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, List } from "react";
 
 import Logo from "../Assets/DEBEO.svg";
-<<<<<<< HEAD
-import background from "../Assets/background.png";
-=======
-import background1 from "../Assets/background.png"
-import background from "../Assets/back.jpg"
->>>>>>> main
+import background1 from "../Assets/background.png";
+import background from "../Assets/back.jpg";
 
 import {
   Box,
@@ -137,15 +133,9 @@ const Navigation = () => {
         </Container>
       </Navbar>
 
-<<<<<<< HEAD
-      <div style={{ backgroundColor: "purple", height: 60, width: 950 }}>
+      <div style={{ backgroundColor: "grey", height: 60, width: 950 }}>
         <section class="hero">
           <div class="container">
-=======
-      <div style = {{backgroundColor: "grey", height: 60, width: 950 }}>
-        <section class = "hero">
-        <div class="container" >
->>>>>>> main
             <div class="left-col">
               <h1>The FUTURE of modern day expense-handling!</h1>
             </div>
@@ -154,13 +144,8 @@ const Navigation = () => {
           </div>
         </section>
       </div>
-<<<<<<< HEAD
-      <div style={{ backgroundColor: "pink", height: 150, width: 950 }}>
+      <div style={{ backgroundColor: "lightgrey", height: 150, width: 950 }}>
         <section class="features-section">
-=======
-      <div style = {{backgroundColor: "lightgrey", height: 150, width: 950 }}>
-      <section class="features-section">
->>>>>>> main
           <div class="container">
             <ul>
               <li>Handle your expenses!</li>

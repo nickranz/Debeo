@@ -11,7 +11,8 @@ import { getTeamMembers } from "../functions";
 
 export default function GroupDashboard() {
   const [activeButton, setActiveButton] = useState("expense");
-  const membersList = getTeamMembers("nick's");
+  // const membersList = getTeamMembers("nick's");
+  const membersList = ["John", "Jane", "Bob"];
 
   console.log("membersList: ", membersList);
 
