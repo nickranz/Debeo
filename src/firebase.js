@@ -12,7 +12,7 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
     databaseURL: "https://debeo-development-default-rtdb.firebaseio.com/"
 })
-
+console.log("API KEY = " + process.env.REACT_APP_FIREBASE_API_KEY);
 export const database = getDatabase(app)
 export const auth = app.auth()
 export default app
