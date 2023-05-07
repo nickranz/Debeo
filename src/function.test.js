@@ -1,6 +1,12 @@
-// import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, getMembers} from './functions';
+import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, getMembers} from './functions';
+import firebase from 'firebase/compat/app'
+import app, { database } from "./firebase";
+
+
+
+
 //import functions for testing
-const functions = require('./functions');
+//const functions = require('./functions');
 
 beforeEach(() => {
     addTeam("TestTeam");
