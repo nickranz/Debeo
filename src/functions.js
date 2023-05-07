@@ -13,6 +13,7 @@ import {
 } from "firebase/database";
 import firebase from "firebase/compat/app";
 
+/**  */
 export function addTeam(teamName) {
   //do we need to explicitly not allow duplicates or does firebase do that?
   //addTeam with teamName as key (best solution for our time constraints)
@@ -33,7 +34,6 @@ export function addTeam(teamName) {
 }
 /**Adds member w/ key username at path teams/teamName/members/userName */
 export function addMember(teamName, userName, userEmail) {
-  // console.log("hi");
   try {
     set(ref(database, "teams/" + teamName + "/members/" + userName), {
       username: userName,
@@ -46,7 +46,7 @@ export function addMember(teamName, userName, userEmail) {
   return;
 }
 /**Removes Team w/ key teamName from path teams/teamName */
-function removeTeam(teamName) {
+export function removeTeam(teamName) {
   //Get the reference to specific teamName table via teamRef child
   try {
     var teamRef = ref(database, "teams/" + teamName);
@@ -57,7 +57,7 @@ function removeTeam(teamName) {
   return;
 }
 /**Removes member w/ key username from path teams/teamName/members/userName */
-function removeMember(teamName, userName) {
+export function removeMember(teamName, userName) {
   try {
     var memberRef = ref(database, "teams/" + teamName + "/members/" + userName);
     remove(memberRef);
@@ -69,15 +69,25 @@ function removeMember(teamName, userName) {
 
 /**Sets admin of a team at path teams/teamName */
 export function setAdmin(teamName, userName) {
-  console.log("admin: ", userName);
   try {
-    set(ref(database, "teams/" + teamName + "/admin"), {
-      admin: userName,
-    });
+    set(ref(database, "teams/" + teamName + "/admin"), userName);
   } catch (err) {
     console.log(err);
   }
   return;
+}
+/**Gets admin of a team */
+export function getAdmin(teamName) {
+  //return list of users in one team
+  try {
+    const que = query(ref(database, "teams/" + teamName));
+    let result = get(que).then((snapshot) => {
+      //return snapshot.getValue("admin");
+      return snapshot("admin").val();
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 /**Returns list of member usernames from path teams/teamName/members */
 export function getTeamMembers(teamName) {
@@ -88,18 +98,17 @@ export function getTeamMembers(teamName) {
     //names list will store the team members associated with provided team name
     snapshot.forEach((childSnapshot) => {
       var key = childSnapshot.key;
-      // names.push(key);
-      // console.log(childSnapshot.child("username").val());
-      names.push(childSnapshot.child("username").val());
+      names.push(key);
+      //console.log(childSnapshot.child("username").val());
+      //names.push(childSnapshot.child("username").val())
     });
   });
   //return the names list
-  console.log(names);
   return names;
 }
 
 /**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
-function addTransaction(teamName, transactionName, paid_by, date) {
+export function addTransaction(teamName, transactionName, paid_by, date) {
   try {
     set(
       ref(database, "teams/" + teamName + "/transactions/" + transactionName),
@@ -115,9 +124,60 @@ function addTransaction(teamName, transactionName, paid_by, date) {
   }
   return;
 }
+/** Get list of transaction keys from teamName */
+export function getTransactions(teamName) {
+  try {
+    //return list of users in one team
+    const que = query(ref(database, "teams/" + teamName + "/transactions"));
+    const transactions = [];
+    let result = get(que).then((snapshot) => {
+      //names list will store the team members associated with provided team name
+      snapshot.forEach((childSnapshot) => {
+        var key = childSnapshot.key;
+        transactions.push(key);
+        //console.log(childSnapshot.child("transactionName").val());
+        //transactions.push(childSnapshot.child("transactionName").val())
+      });
+    });
+
+    return transactions;
+  } catch (err) {
+    console.error(err);
+  }
+}
+/**Get list of item objects from transaction name */
+export function getItems(teamName, transactionName) {
+  try {
+    //return list of users in one team
+    const que = query(
+      ref(database, "teams/" + teamName + "/transactions/" + transactionName)
+    );
+    const items = [];
+    let result = get(que).then((snapshot) => {
+      //names list will store the team members associated with provided team name
+      snapshot.forEach((childSnapshot) => {
+        //var key = childSnapshot.key;
+        //items.push(key);
+        items.push(childSnapshot.val());
+        //console.log(childSnapshot.child("transactionName").val());
+        //transactions.push(childSnapshot.child("transactionName").val())
+      });
+    });
+
+    return items;
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 /**Adds item w/ key itemName at path teams/teamName/transactions/itemName. Initializes itemPrice and itemQuantity fields. */
-function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity) {
+export function addItem(
+  teamName,
+  transactionName,
+  itemName,
+  itemPrice,
+  itemQuantity
+) {
   set(
     ref(
       database,
@@ -131,7 +191,7 @@ function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity) {
   );
 }
 /**Removes transaction w/ key transactionName from path teams/teamName/transactions */
-function removeTransaction(teamName, transactionName) {
+export function removeTransaction(teamName, transactionName) {
   try {
     var transactionRef = ref(
       database,
@@ -144,7 +204,7 @@ function removeTransaction(teamName, transactionName) {
   return;
 }
 /**Removes item w/ key itemName from path teams/teamName/transactions/transactionName */
-function removeItem(teamName, transactionName, itemName) {
+export function removeItem(teamName, transactionName, itemName) {
   try {
     var itemRef = ref(
       database,
@@ -174,3 +234,10 @@ console.log(testList);
 addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
 addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
 removeTransaction("Fruits", "Target");
+
+console.log("Transactions");
+var testTransactions = getTransactions("Fruits");
+console.log(testTransactions);
+addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
+console.log("Items:");
+console.log(getItems("Fruits", testTransactions[0]));
