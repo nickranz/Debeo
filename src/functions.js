@@ -1,7 +1,9 @@
-import app, { database } from "./firebase";
-import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
-// import firebase from 'firebase/compat/app'
+import app , { database } from "./firebase";
+import { /*getDatabase, */ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
+//import firebase from 'firebase/compat/app'
+import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 
+connectDatabaseEmulator(database, "localhost", 9000);
 
 export function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
