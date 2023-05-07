@@ -4,12 +4,16 @@ import NavBarDash from "./NavBarDash";
 import Task from "./Task";
 import TransactionTask from "./TransactionTask";
 import bobby from "../exampleData/teamMembers.json";
+import { getTeamMembers } from "../functions";
 // import Groups from "./Groups";
 
 //import UpdateProfile from './UpdateProfile'
 
 export default function GroupDashboard() {
   const [activeButton, setActiveButton] = useState("expense");
+  const membersList = getTeamMembers("nick's");
+
+  console.log("membersList: ", membersList);
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -38,11 +42,16 @@ export default function GroupDashboard() {
                     </Button>
                   </div>
                   <ListGroup className="text-center">
-                    {bobby.map((user) => (
+                    {/* {bobby.map((user) => (
                       <ListGroup.Item key={user.user}>
                         {user.user}
                       </ListGroup.Item>
+                    ))} */}
+                    <div>hi</div>
+                    {membersList.map((string) => (
+                      <ListGroup.Item>{string}</ListGroup.Item>
                     ))}
+                    <ListGroup.Item>bingo</ListGroup.Item>
                   </ListGroup>
                 </div>
               </Container>

@@ -80,7 +80,7 @@ export function setAdmin(teamName, userName) {
   return;
 }
 /**Returns list of member usernames from path teams/teamName/members */
-function getTeamMembers(teamName) {
+export function getTeamMembers(teamName) {
   //return list of users in one team
   const que = query(ref(database, "teams/" + teamName + "/members"));
   const names = [];
@@ -88,12 +88,13 @@ function getTeamMembers(teamName) {
     //names list will store the team members associated with provided team name
     snapshot.forEach((childSnapshot) => {
       var key = childSnapshot.key;
-      names.push(key);
-      console.log(childSnapshot.child("username").val());
+      // names.push(key);
+      // console.log(childSnapshot.child("username").val());
       names.push(childSnapshot.child("username").val());
     });
   });
   //return the names list
+  console.log(names);
   return names;
 }
 
