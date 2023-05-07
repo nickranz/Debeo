@@ -89,7 +89,8 @@ export function getAdmin(teamName) {
     console.log(err);
   }
 }
-/**Returns list of member usernames from path teams/teamName/members */
+
+/**Returns array of member usernames from path teams/teamName/members */
 export function getTeamMembers(teamName) {
   //return list of users in one team
   const que = query(ref(database, "teams/" + teamName + "/members"));

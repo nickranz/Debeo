@@ -11,10 +11,10 @@ import { getTeamMembers } from "../functions";
 
 export default function GroupDashboard() {
   const [activeButton, setActiveButton] = useState("expense");
-  // const membersList = getTeamMembers("nick's");
-  const membersList = ["John", "Jane", "Bob"];
+  const membersList = getTeamMembers("nick's");
+  // const membersList = ["Bob", "Nicolas"];
 
-  console.log("membersList: ", membersList);
+  console.log("membersList: ", membersList.at(1));
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -49,9 +49,10 @@ export default function GroupDashboard() {
                       </ListGroup.Item>
                     ))} */}
                     <div>hi</div>
-                    {membersList.map((string) => (
-                      <ListGroup.Item>{string}</ListGroup.Item>
+                    {membersList.map((string, index) => (
+                      <ListGroup.Item key={index}>{string}</ListGroup.Item>
                     ))}
+
                     <ListGroup.Item>bingo</ListGroup.Item>
                   </ListGroup>
                 </div>
