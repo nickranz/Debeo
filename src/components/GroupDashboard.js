@@ -14,7 +14,7 @@ export default function GroupDashboard() {
   var membersList = getTeamMembers("nick's");
   // const membersList = ["Bob", "Nicolas"];
 
-  console.log("membersList: ", membersList);
+  // console.log("membersList: ", membersList);
   setTimeout(() => {
     console.log("bil", membersList); // This should log the fully populated array
     //Render MyComponent here with membersList as a prop
@@ -41,7 +41,7 @@ export default function GroupDashboard() {
                     <Button
                       size="sm"
                       style={{ float: "right" }}
-                      href="/addMember"
+                      href="/GroupDashBoard"
                     >
                       +
                     </Button>
