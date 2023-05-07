@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./db.js"
 import "./functions.js"
 // import {addTeam} from '<./functions.js>/function.test.js';
-require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app'
 import "firebase/compat/auth"
 import { getDatabase } from "firebase/database";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 
 
 const app = firebase.initializeApp({
@@ -12,7 +13,12 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
     databaseURL: "https://debeo-development-default-rtdb.firebaseio.com/"
 })
-console.log("API KEY = " + process.env.REACT_APP_FIREBASE_API_KEY);
+
+/* temp changes to try auth emulator*/
+export const auth = getAuth();
+connectAuthEmulator(auth, "http://localhost:9099");
+
 export const database = getDatabase(app)
-export const auth = app.auth()
+//export const auth = app.auth()
+
 export default app

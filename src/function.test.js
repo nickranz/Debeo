@@ -1,9 +1,12 @@
-// import app, { database } from "./firebase";
-// import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
-// import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, getMembers} from './functions';
-// import functions for testing
-// import './functions';
-const functions = require('./functions', './config.js' );
+import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, getMembers} from './functions';
+import firebase from 'firebase/compat/app'
+import app, { database } from "./firebase";
+
+
+
+
+//import functions for testing
+//const functions = require('./functions');
 
 beforeEach(() => {
     addTeam("TestTeam");
