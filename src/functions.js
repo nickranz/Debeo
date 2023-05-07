@@ -1,6 +1,6 @@
 import app, { database } from "./firebase";
 import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
-import firebase from 'firebase/compat/app'
+// import firebase from 'firebase/compat/app'
 
 
 export function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?

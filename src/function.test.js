@@ -1,7 +1,7 @@
 import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, getMembers} from './functions';
 import firebase from 'firebase/compat/app'
 import app, { database } from "./firebase";
-
+require('dotenv').config();
 
 
 

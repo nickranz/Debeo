@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "./UpdateProfile";
 import HomeScreen from "./HomeScreen";
 
+require('dotenv').config();
+
 function App() {
   return (
     <>
