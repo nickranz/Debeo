@@ -219,26 +219,26 @@ export function removeItem(teamName, transactionName, itemName) {
 }
 
 /* TESTING ============================================================================================= */
-removeTeam("Fruits");
-addTeam("Fruits");
+// removeTeam("Fruits");
+// addTeam("Fruits");;
 
-addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
-addMember("Fruits", "Kiwi", "kiwi@fruit.com");
-addMember("Fruits", "Mango", "mango@fruit.com");
-addMember("Fruits", "Tangerine", "tangerine@fruit.com");
+// addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
+// addMember("Fruits", "Kiwi", "kiwi@fruit.com");
+// addMember("Fruits", "Mango", "mango@fruit.com");
+// addMember("Fruits", "Tangerine", "tangerine@fruit.com");
 
-setAdmin("Fruits", "Mango");
+// setAdmin("Fruits", "Mango");
 
-var testList = getTeamMembers("Fruits");
-console.log(testList);
+// var testList = getTeamMembers("Fruits");
+// console.log(testList);
 
-addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
-addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
-removeTransaction("Fruits", "Target");
+// addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
+// addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
+// removeTransaction("Fruits", "Target");
 
-console.log("Transactions");
-var testTransactions = getTransactions("Fruits");
-console.log(testTransactions);
-addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
-console.log("Items:");
-console.log(getItems("Fruits", testTransactions[0]));
+// console.log("Transactions");
+// var testTransactions = getTransactions("Fruits");
+// console.log(testTransactions);
+// addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
+// console.log("Items:")
+// console.log(getItems("Fruits", testTransactions[0]))
