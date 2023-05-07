@@ -1,9 +1,11 @@
-import app, { database } from "./firebase";
-import { getDatabase, ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
-import firebase from 'firebase/compat/app'
+import app , { database } from "./firebase";
+import { /*getDatabase, */ref, set, push, remove, child, query, orderByKey, orderByChild, get} from "firebase/database";
+//import firebase from 'firebase/compat/app'
+import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 
+connectDatabaseEmulator(database, "localhost", 9000);
 
-function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
+export function addTeam(teamName){ //do we need to explicitly not allow duplicates or does firebase do that?
     //addTeam with teamName as key (best solution for our time constraints)
     //May use push() to generate unique ID as attribute
     try{
@@ -22,7 +24,7 @@ function addTeam(teamName){ //do we need to explicitly not allow duplicates or d
     return;
 }
 /**Adds member w/ key username at path teams/teamName/members/userName */
-function addMember(teamName, userName, userEmail){
+export function addMember(teamName, userName, userEmail){
     try{
         set(ref(database, 'teams/' + teamName + '/members/' + userName), { 
             username : userName,
@@ -36,7 +38,7 @@ function addMember(teamName, userName, userEmail){
     return;
 }
 /**Removes Team w/ key teamName from path teams/teamName */
-function removeTeam(teamName){
+export function removeTeam(teamName){
     //Get the reference to specific teamName table via teamRef child
     try {
         var teamRef = ref(database, "teams/" + teamName);
@@ -48,7 +50,7 @@ function removeTeam(teamName){
     return;
 }
 /**Removes member w/ key username from path teams/teamName/members/userName */
-function removeMember(teamName, userName){
+export function removeMember(teamName, userName){
     try {
         var memberRef = ref(database, "teams/" + teamName +"/members/" + userName);
         remove(memberRef);
@@ -84,7 +86,7 @@ catch(err){
 }
 }
 /**Returns list of member usernames from path teams/teamName/members */
-function getTeamMembers(teamName){
+export function getTeamMembers(teamName){
     //return list of users in one team
     const que  = query(ref(database, "teams/" + teamName + "/members"));
     const names = [];
