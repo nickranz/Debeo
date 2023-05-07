@@ -6,7 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, List } from "react";
 
 import Logo from "../Assets/DEBEO.svg";
-import background from "../Assets/background.png"
+import background1 from "../Assets/background.png"
+import background from "../Assets/back.jpg"
 
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -123,7 +124,7 @@ const Navigation = () => {
         </Container>
       </Navbar>
 
-      <div style = {{backgroundColor: "purple", height: 60, width: 950 }}>
+      <div style = {{backgroundColor: "grey", height: 60, width: 950 }}>
         <section class = "hero">
         <div class="container" >
             <div class="left-col">
@@ -134,7 +135,7 @@ const Navigation = () => {
           </div>
         </section>
       </div>
-      <div style = {{backgroundColor: "pink", height: 150, width: 950 }}>
+      <div style = {{backgroundColor: "lightgrey", height: 150, width: 950 }}>
       <section class="features-section">
           <div class="container">
             <ul>
