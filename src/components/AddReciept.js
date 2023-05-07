@@ -7,6 +7,7 @@ import ItemInfo from "./ItemInfo";
 
 export default function AddReciept() {
   const { currentUser } = useAuth();
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -23,6 +24,23 @@ export default function AddReciept() {
     }
   };
 
+  // function to handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    try {
+      // console.log("currentEmail:", currentUser.email);
+
+      setError("");
+      setLoading(true);
+
+      navigate("/GroupDashBoard");
+    } catch (error) {
+      setError("Failed to create group");
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <div>
@@ -33,7 +51,7 @@ export default function AddReciept() {
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-xl-8 mx-auto">
               <div className="my-4">
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <div className="row mt-1 align-items-center">
                     <h4 className="mb-1">Add Receipt</h4>
                   </div>

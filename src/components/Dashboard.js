@@ -2,10 +2,17 @@ import { Button, Container } from "react-bootstrap";
 import NavBarDash from "./NavBarDash";
 import TransactionTask from "./TransactionTask";
 import Groups from "./Groups";
+import { useState } from "react";
+import { textAlign } from "@mui/system";
 
 //import UpdateProfile from './UpdateProfile'
 
 export default function Dashboard() {
+  const [activeButton, setActiveButton] = useState("expense");
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
   return (
     <>
       <div className="">
@@ -57,15 +64,26 @@ export default function Dashboard() {
             <Container>
               <div class="card w-51">
                 <div className="card-header bg-info">
-                  <button type="button" class="btn btn-info btn-sm">
+                  <button
+                    type="button"
+                    class="btn btn-info btn-sm"
+                    onClick={() => handleButtonClick("expense")}
+                  >
                     Recent
                   </button>
-                  <button type="button" class="btn btn-info btn-sm">
+                  <button
+                    type="button"
+                    class="btn btn-info btn-sm"
+                    onClick={() => handleButtonClick("task")}
+                  >
                     My Transactions
                   </button>
                 </div>
                 <div class="card-body">
-                  <TransactionTask />
+                  {activeButton === "task" && <TransactionTask />}
+                  {activeButton === "expense" && (
+                    <div style={{ textAlign: "center" }}>No recent info</div>
+                  )}
                 </div>
               </div>
             </Container>
