@@ -61,7 +61,7 @@ export function removeMember(teamName, userName){
     return;
 }
 /**Sets admin of a team at path teams/teamName */
-function setAdmin(teamName, userName){
+export function setAdmin(teamName, userName){
     try{
         set(ref(database, 'teams/' + teamName +"/admin"), userName);
     }
@@ -71,14 +71,14 @@ function setAdmin(teamName, userName){
     return;
 }
 /**Gets admin of a team */
-function getAdmin(teamName){
+export function getAdmin(teamName){
 //return list of users in one team
 try {
     const que  = query(ref(database, "teams/" + teamName));
     let result = get(que)
     .then((snapshot) =>{
         //return snapshot.getValue("admin");
-        return snapshot("admin").val();
+        return snapshot.child("admin").val();
     });
 }
 catch(err){
@@ -101,13 +101,15 @@ export function getTeamMembers(teamName){
         });
         
     });
+
+    
     //return the names list
     return names;
 
 }
 
 /**Adds transaction w/ key transactionName at path teams/teamName/transactions. Initializes paid_by and date fields. */
-function addTransaction(teamName, transactionName, paid_by, date){
+export function addTransaction(teamName, transactionName, paid_by, date){
     try{ 
         set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName), {
              transactionName : transactionName,
@@ -122,7 +124,7 @@ function addTransaction(teamName, transactionName, paid_by, date){
     return;
  }
 /** Get list of transaction keys from teamName */
- function getTransactions(teamName){
+export function getTransactions(teamName){
     try{
 
         //return list of users in one team
@@ -146,7 +148,7 @@ function addTransaction(teamName, transactionName, paid_by, date){
     }
  }
 /**Get list of item objects from transaction name */
-function getItems(teamName, transactionName){
+export function getItems(teamName, transactionName){
     try{
 
         //return list of users in one team
@@ -174,7 +176,7 @@ function getItems(teamName, transactionName){
 
 
 /**Adds item w/ key itemName at path teams/teamName/transactions/itemName. Initializes itemPrice and itemQuantity fields. */
-function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity){
+export function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity){
      set(ref(database, 'teams/' + teamName +"/transactions/" + transactionName + "/" + itemName), {
          itemName : itemName,
          itemPrice : itemPrice,
@@ -182,7 +184,7 @@ function addItem(teamName, transactionName, itemName, itemPrice, itemQuantity){
      })
  }
 /**Removes transaction w/ key transactionName from path teams/teamName/transactions */
-function removeTransaction(teamName, transactionName){
+export function removeTransaction(teamName, transactionName){
     try {
         var transactionRef = ref(database, "teams/" + teamName + "/transactions/" + transactionName);
         remove(transactionRef);
@@ -193,7 +195,7 @@ function removeTransaction(teamName, transactionName){
     return;
 }
 /**Removes item w/ key itemName from path teams/teamName/transactions/transactionName */
-function removeItem(teamName, transactionName, itemName){
+export function removeItem(teamName, transactionName, itemName){
     try {
         var itemRef = ref(database, "teams/" + teamName + "/transactions/" + transactionName + "/" + itemName);
         remove(itemRef);
