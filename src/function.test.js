@@ -172,6 +172,6 @@ test('Remove and get one item from empty transaction list', () => {
 })
 /**=================================================================================================================================================== */
 afterAll(done => {
-    removeTeam("TestTeam")
+    //removeTeam("TestTeam")
     done();
 })
