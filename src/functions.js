@@ -70,23 +70,22 @@ export function setAdmin(teamName, userName){
     };
     return;
 }
-/**Gets admin of a team */
+
+/**Gets admin of a team - doesn't work*/
 export function getAdmin(teamName){
-<<<<<<< HEAD
-=======
 //return list of users in one team
->>>>>>> 3f4cf400415b966e72ed278ed3ba8826f30552e3
-try {
-    const que  = query(ref(database, "teams/" + teamName));
-    let result = get(que)
-    .then((snapshot) =>{
-        //return snapshot.getValue("admin");
-        return snapshot.child("admin").val();
-    });
-}
-catch(err){
-    console.log(err);
-}
+    try {
+        const que  = query(ref(database, "teams/" + teamName));
+        let result = get(que)
+        .then((snapshot) =>{
+            //return snapshot.getValue("admin");
+            console.log("getAdmin() snapshot.val()" + snapshot.val().toString());
+            return snapshot.val().admin;
+        });
+    }
+    catch(err){
+        console.log(err);
+    }
 }
 /**Returns list of member usernames from path teams/teamName/members */
 export function getTeamMembers(teamName){
@@ -210,27 +209,25 @@ export function removeItem(teamName, transactionName, itemName){
 }
 
 /* TESTING ============================================================================================= */
+// removeTeam("Fruits");
+// addTeam("Fruits");
+// addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
+// addMember("Fruits", "Kiwi", "kiwi@fruit.com");
+// addMember("Fruits", "Mango", "mango@fruit.com");
+// addMember("Fruits", "Tangerine", "tangerine@fruit.com");
 
+// setAdmin("Fruits", "Mango");
+// console.log("ADMIN : " + getAdmin("Fruits"));
+// var testList = getTeamMembers("Fruits");
+// console.log(testList);
 
-removeTeam("Fruits");
-addTeam("Fruits");;
-addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
-addMember("Fruits", "Kiwi", "kiwi@fruit.com");
-addMember("Fruits", "Mango", "mango@fruit.com");
-addMember("Fruits", "Tangerine", "tangerine@fruit.com");
+// addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
+// addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
+// removeTransaction("Fruits", "Target");
 
-setAdmin("Fruits", "Mango");
-
-var testList = getTeamMembers("Fruits");
-console.log(testList);
-
-addTransaction("Fruits", "Walmart", "Kiwi", "05-05-2023");
-addTransaction("Fruits", "Target", "Tangerine", "08-22-2023");
-removeTransaction("Fruits", "Target");
-
-console.log("Transactions");
-var testTransactions = getTransactions("Fruits");
-console.log(testTransactions);
-addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
-console.log("Items:")
-console.log(getItems("Fruits", testTransactions[0]))
+// console.log("Transactions");
+// var testTransactions = getTransactions("Fruits");
+// console.log(testTransactions);
+// addItem("Fruits", testTransactions[0], "Poop Sock", 47000, 24);
+// console.log("Items:")
+// console.log(getItems("Fruits", testTransactions[0]))

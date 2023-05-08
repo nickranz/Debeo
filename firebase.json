@@ -14,27 +14,15 @@
     ]
   },
   "emulators": {
-<<<<<<< HEAD
-=======
     "database": {
       "port": 9000
     },
->>>>>>> 3f4cf400415b966e72ed278ed3ba8826f30552e3
     "hosting": {
       "port": 5000
     },
     "ui": {
-<<<<<<< HEAD
-      "enabled": false
-    },
-    "singleProjectMode": true,
-    "database": {
-      "port": 9000
-    }
-=======
       "enabled": true
     },
     "singleProjectMode": true
->>>>>>> 3f4cf400415b966e72ed278ed3ba8826f30552e3
   }
 }
