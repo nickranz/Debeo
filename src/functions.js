@@ -72,12 +72,16 @@ export function setAdmin(teamName, userName){
 }
 /**Gets admin of a team */
 export function getAdmin(teamName){
+<<<<<<< HEAD
+=======
+//return list of users in one team
+>>>>>>> 3f4cf400415b966e72ed278ed3ba8826f30552e3
 try {
     const que  = query(ref(database, "teams/" + teamName));
     let result = get(que)
     .then((snapshot) =>{
         //return snapshot.getValue("admin");
-        return snapshot("admin").val();
+        return snapshot.child("admin").val();
     });
 }
 catch(err){
@@ -100,6 +104,8 @@ export function getTeamMembers(teamName){
         });
         
     });
+
+    
     //return the names list
     return names;
 
