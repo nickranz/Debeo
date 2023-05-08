@@ -9,14 +9,18 @@ import {addTeam, addMember, addTransaction, addItem, getItems, getTransactions, 
 beforeEach(() => {
     removeTeam("TestTeam")
     addTeam("TestTeam");
-    addMember("TestTeam", "TestUser1", "UserEmail@email.com")
+    addMember("TestTeam", "User1", "UserEmail@email.com")
 });
 
 test('Test creation of a team', () => {
-    expect(getTeamMembers("TestTeam")).toStrictEqual(['TestUser1']);
+    console.log(getTeamMembers("TestTeam"))
+    async function sequence() {
+        await promise1(100); // Wait 50ms…
+        expect(getTeamMembers("TestTeam")).toStrictEqual(['User1']);
+    }
 });
 
 test('Remove member TestUser1', () => {
-    removeMember("TestTeam", "TestUser1");
+    removeMember("TestTeam", "User1");
     expect(getTeamMembers("TestTeam")).toStrictEqual([]);
 });
