@@ -205,9 +205,10 @@ function removeItem(teamName, transactionName, itemName){
 }
 
 /* TESTING ============================================================================================= */
+
+
 removeTeam("Fruits");
 addTeam("Fruits");;
-
 addMember("Fruits", "Dragonfruit", "dragonfruit@fruit.com");
 addMember("Fruits", "Kiwi", "kiwi@fruit.com");
 addMember("Fruits", "Mango", "mango@fruit.com");
